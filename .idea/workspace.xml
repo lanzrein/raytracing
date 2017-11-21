@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04a6afe5-ca77-4011-9993-541cf6d8542e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Raytracing.html" afterPath="$PROJECT_DIR$/Raytracing.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Raytracing.js" afterPath="$PROJECT_DIR$/Raytracing.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -31,8 +29,8 @@
       <file leaf-file-name="Raytracing.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Raytracing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-419">
-              <caret line="196" column="12" lean-forward="true" selection-start-line="196" selection-start-column="12" selection-end-line="196" selection-end-column="12" />
+            <state relative-caret-position="652">
+              <caret line="282" column="31" lean-forward="false" selection-start-line="282" selection-start-column="31" selection-end-line="282" selection-end-column="31" />
               <folding>
                 <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
                 <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
@@ -44,8 +42,8 @@
       <file leaf-file-name="three.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/three.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="18672" column="8" lean-forward="false" selection-start-line="18672" selection-start-column="8" selection-end-line="18672" selection-end-column="8" />
+            <state relative-caret-position="447">
+              <caret line="8170" column="19" lean-forward="false" selection-start-line="8170" selection-start-column="19" selection-end-line="8170" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -150,12 +148,12 @@
       <workItem from="1510858050438" duration="6870000" />
       <workItem from="1511113098752" duration="1223000" />
       <workItem from="1511130818066" duration="810000" />
-      <workItem from="1511294080554" duration="3113000" />
+      <workItem from="1511294080554" duration="4906000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18714000" />
+    <option name="totallyTimeSpent" value="20507000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="952" y="0" width="976" height="1038" extended-state="0" />
@@ -398,14 +396,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/three.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="18672" column="8" lean-forward="false" selection-start-line="18672" selection-start-column="8" selection-end-line="18672" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Raytracing.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -414,10 +404,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/three.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="8170" column="19" lean-forward="false" selection-start-line="8170" selection-start-column="19" selection-end-line="8170" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Raytracing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-419">
-          <caret line="196" column="12" lean-forward="true" selection-start-line="196" selection-start-column="12" selection-end-line="196" selection-end-column="12" />
+        <state relative-caret-position="652">
+          <caret line="282" column="31" lean-forward="false" selection-start-line="282" selection-start-column="31" selection-end-line="282" selection-end-column="31" />
           <folding>
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />

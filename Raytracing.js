@@ -227,7 +227,7 @@ function raytrace_click(event) {
 
     raycaster.setFromCamera(vec, camera);
     // console.log(raycaster.ray.direction);
-    var intersections = raycaster.intersectObjects(scene.children);
+    var intersections = raycaster.intersectObjects(scene.children,true);
     //we only want the first intersect..
 
     console.log(raycaster.ray.origin.x+";"+raycaster.ray.origin.y+":"+raycaster.ray.origin.z);
@@ -268,6 +268,19 @@ function raytrace_click(event) {
     var line = new THREE.Line(geometry, material);
     dummy.add(line);
 
+
+}
+
+
+function compute_rebound(ray, object){
+    //objct has point of intersection in world coord,
+    //face intersected
+    //uv coord at point of intersection.
+    var origin = object.point;
+    var face = object.face;
+    var facenormal = face.normal
+    var vertexnormal = face.vertexNormals;
+    //TODO continue from here. 
 
 }
 
