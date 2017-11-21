@@ -34,7 +34,7 @@ function objectRotation(ch) {
 //we start with a normal presentation....
 
 function cameraSetup(scene) {
-    camera = new THREE.PerspectiveCamera(60, 800.0/600.0, 1, 10000);
+    camera = new THREE.PerspectiveCamera(60, 800.0/600.0, 0.5, 100);
     camera.position.set(4, 4, 4);
     camera.lookAt(new THREE.Vector3(0, 0, 0));
 }
@@ -168,7 +168,7 @@ function setup_objects(scene) {
     var materialWhite = new THREE.MeshPhongMaterial({color: 0xffffff, specular: 0x111111, shininess: 40});
 
     var obj = new THREE.Mesh(sphere, materialWhite);
-    obj.position.set(0, -4.5, 0);
+    obj.position.set(0, -4, 0);
     dummy.add(obj);
 
 }
@@ -213,7 +213,7 @@ var raycaster = new THREE.Raycaster();
 //playing around with the Raytracer options....
 function raytrace_click(event) {
 
-    if(event.clientX > 800 || event.clientY > 600){return;}
+    if(event.clientX > 800 || event.clientY > 600){console.log("TOOOUT:"+event.x+":"+event.y);return;}
     var x = event.clientX / 800.0*2 - 1;
     var y = -(event.clientY / 600.0)*2 + 1;
     console.log(event);
@@ -229,22 +229,47 @@ function raytrace_click(event) {
     // console.log(raycaster.ray.direction);
     var intersections = raycaster.intersectObjects(scene.children);
     //we only want the first intersect..
-    if (intersections.length > 0) {
-        var obj = intersections[0];
-        console.log(obj);
-        console.log(obj.object.material.color);
-        obj.object.material.color.set(0x111111);
 
+    console.log(raycaster.ray.origin.x+";"+raycaster.ray.origin.y+":"+raycaster.ray.origin.z);
+    console.log(camera.position.x+";"+camera.position.y+":"+camera.position.z);
+
+    for(var i = 0; i < intersections.length; i++){
+        var obj = intersections[i];
+        // console.log(obj);
+        console.log("Intersection : " +obj.object.position.x);
+        console.log("Intersection : " +obj.object.position.y);
+        console.log("Intersection : " +obj.object.position.z);
+
+        obj.object.material.color.set(0x111111);
     }
 
-    var material = new THREE.MeshPhongMaterial({color: 0xff00ff, specular : 0x220022,shininess: 32});
-    var geometry = new THREE.SphereGeometry(0.1,32,48);
+    // var material = new THREE.MeshPhongMaterial({color: 0xff00ff, specular : 0x220022,shininess: 32});
+    // var geometry = new THREE.SphereGeometry(0.1,32,48);
     var test = raycaster.ray.direction;
-    console.log(test);
+    // console.log(test);
+    //
+    // var line = new THREE.Mesh(geometry, material);
+    // line.position.set(raycaster.ray.direction.x*3.0,raycaster.ray.direction.y*3.0,raycaster.ray.direction.z*3.0);
+    // dummy.add(line);
 
-    var line = new THREE.Mesh(geometry, material);
-    line.position.set(raycaster.ray.direction.x,raycaster.ray.direction.y,raycaster.ray.direction.z);
+    var material = new THREE.LineBasicMaterial({color: 0xff0000});
+    var geometry = new THREE.Geometry();
+    var xx = new THREE.Vector3(raycaster.ray.direction.x,raycaster.ray.direction.y,raycaster.ray.direction.z);
+    xx.y *= 1000;
+    xx.x*= 1000;
+    xx.z*=1000;
+    geometry.vertices.push(
+       raycaster.ray.origin,
+        xx
+    );
+
+
+    console.log(xx);
+    var line = new THREE.Line(geometry, material);
     dummy.add(line);
 
 
 }
+
+
+
