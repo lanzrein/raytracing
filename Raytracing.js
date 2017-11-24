@@ -232,7 +232,13 @@ function raytrace_click(event) {
 
     console.log(raycaster.ray.origin.x+";"+raycaster.ray.origin.y+":"+raycaster.ray.origin.z);
     console.log(camera.position.x+";"+camera.position.y+":"+camera.position.z);
+    var direction = new THREE.Vector3(raycaster.ray.direction.x,raycaster.ray.direction.y,raycaster.ray.direction.z);
+    direction.y *= 1000;
+    direction.x*= 1000;
+    direction.z*=1000;
 
+
+    addAsLine(raycaster.ray.origin,direction,0xff00ff);
     for(var i = 0; i < intersections.length; i++){
         var obj = intersections[i];
         // console.log(obj);
@@ -241,46 +247,86 @@ function raytrace_click(event) {
         console.log("Intersection : " +obj.object.position.z);
 
         obj.object.material.color.set(0x111111);
+        compute_rebound(raycaster.ray.direction,obj)
     }
 
-    // var material = new THREE.MeshPhongMaterial({color: 0xff00ff, specular : 0x220022,shininess: 32});
-    // var geometry = new THREE.SphereGeometry(0.1,32,48);
-    var test = raycaster.ray.direction;
-    // console.log(test);
-    //
-    // var line = new THREE.Mesh(geometry, material);
-    // line.position.set(raycaster.ray.direction.x*3.0,raycaster.ray.direction.y*3.0,raycaster.ray.direction.z*3.0);
-    // dummy.add(line);
-
-    var material = new THREE.LineBasicMaterial({color: 0xff0000});
-    var geometry = new THREE.Geometry();
-    var xx = new THREE.Vector3(raycaster.ray.direction.x,raycaster.ray.direction.y,raycaster.ray.direction.z);
-    xx.y *= 1000;
-    xx.x*= 1000;
-    xx.z*=1000;
-    geometry.vertices.push(
-       raycaster.ray.origin,
-        xx
-    );
 
 
-    console.log(xx);
-    var line = new THREE.Line(geometry, material);
-    dummy.add(line);
+
 
 
 }
 
-
+/**
+ * Compute the rebound and what to do with it.
+ * We pass the ray and the object that it touched.
+ * take care when handling the ray you might want to use ray.direction.
+ * @param ray
+ * @param object
+ */
 function compute_rebound(ray, object){
     //objct has point of intersection in world coord,
     //face intersected
     //uv coord at point of intersection.
     var origin = object.point;
     var face = object.face;
-    var facenormal = face.normal
-    var vertexnormal = face.vertexNormals;
-    //TODO continue from here. 
+    if(face != null) {
+        var facenormal = face.normal
+        var vertexnormal = face.vertexNormals;
+        console.log("Test");
+        var cosA = ray.lengthSq() / facenormal.lengthSq();
+        console.log(cosA + " : " + facenormal.lengthSq())
+
+        var reflect = ray.reflect(facenormal);
+        reflect.x *= 100;
+        reflect.y *= 100;
+        reflect.z *= 100;
+        addAsLine(origin, reflect, 0x001100);
+        addAsLine(origin,facenormal,0x000011);
+        //So we need to work with ray.reflect on the face normal. It might look weird on the testing.
+        //but it seems okay.
+        //now we need to recurse on this ray a set level (say 3 to start with)
+        /*
+        idea of algorithm (not sure)
+        raytracing(scene, camera, level):
+        for every pixel :
+            do the ray tracing. if there is no intersection. leave it as is.
+            if there is and intersection :
+                compute the lighting ads,
+                reflect the vector and
+                    if(level >= MAXLEVEL){stop}else
+                        raytracing(scene,camera,level+1)
+
+
+
+         moreover we need to find a factor or constant for the level of recursion
+         because the deeper it is. the less it will have an impact.
+         
+
+
+
+         */
+    }
+
+}
+
+/**
+ * debugging function.
+ * creates a line from origin to end with said color.
+ * @param origin
+ * @param end
+ * @param color
+ */
+function addAsLine(origin, end,color){
+    var material = new THREE.LineBasicMaterial({color: color});
+    var geometry = new THREE.Geometry();
+    geometry.vertices.push(
+        origin,
+        end
+    );
+    var line = new THREE.Line(geometry, material);
+
+    dummy.add(line);
 
 }
 
