@@ -192,9 +192,9 @@ function start() {
     scene.add(dummy);
     cameraSetup(scene);
     setupLights(scene);
-    // setupBackGround(scene);
+    setupBackGround(scene);
     setup_objects(scene);
-    add_axis(scene);
+    // add_axis(scene);
     // add_origin_cube(scene);
 
     var render = function () {
@@ -239,15 +239,15 @@ function raytrace_click(event) {
 
 
     addAsLine(raycaster.ray.origin,direction,0xff00ff);
-    for(var i = 0; i < intersections.length; i++){
-        var obj = intersections[i];
+    if(intersections.length > 0){
+        var obj = intersections[0];
         // console.log(obj);
         console.log("Intersection : " +obj.object.position.x);
         console.log("Intersection : " +obj.object.position.y);
         console.log("Intersection : " +obj.object.position.z);
 
-        obj.object.material.color.set(0x111111);
-        compute_rebound(raycaster.ray.direction,obj)
+        // obj.object.material.color.set(0x111111);
+        compute_rebound(raycaster.ray.direction,obj,0)
     }
 
 
@@ -264,25 +264,29 @@ function raytrace_click(event) {
  * @param ray
  * @param object
  */
-function compute_rebound(ray, object){
+function compute_rebound(ray, object, level){
     //objct has point of intersection in world coord,
     //face intersected
     //uv coord at point of intersection.
     var origin = object.point;
     var face = object.face;
+    console.log(object);
     if(face != null) {
+        face.color = 0xff0000;
+
         var facenormal = face.normal
         var vertexnormal = face.vertexNormals;
         console.log("Test");
-        var cosA = ray.lengthSq() / facenormal.lengthSq();
-        console.log(cosA + " : " + facenormal.lengthSq())
 
-        var reflect = ray.reflect(facenormal);
-        reflect.x *= 100;
-        reflect.y *= 100;
-        reflect.z *= 100;
-        addAsLine(origin, reflect, 0x001100);
-        addAsLine(origin,facenormal,0x000011);
+
+        var reflect = ray.reflect(facenormal.normalize()).normalize();
+        raytrace(origin,reflect, level+1);
+
+        reflect.x *= 1000;
+        reflect.y *= 1000;
+        reflect.z *= 1000;
+        addAsLine(origin, reflect, 0xffff00);
+        addAsLine(origin,facenormal,0x000000);
         //So we need to work with ray.reflect on the face normal. It might look weird on the testing.
         //but it seems okay.
         //now we need to recurse on this ray a set level (say 3 to start with)
@@ -299,13 +303,50 @@ function compute_rebound(ray, object){
 
 
 
+
+
          moreover we need to find a factor or constant for the level of recursion
          because the deeper it is. the less it will have an impact.
-         
+
 
 
 
          */
+    }
+
+}
+
+var MAXLEVEL = 3;
+/**
+ * Do the ray tracing work with a basic given line.
+ *
+ * @param origin
+ * @param direction
+ * @param level the level of recursion.
+ */
+function raytrace(origin, dir, level){
+    var raycaster = new THREE.Raycaster();
+    raycaster.set(origin,dir);
+
+    var intersections = raycaster.intersectObjects(scene.children,true);
+    //we only want the first intersect..
+
+    console.log(raycaster.ray.origin.x+";"+raycaster.ray.origin.y+":"+raycaster.ray.origin.z);
+    var direction = new THREE.Vector3(raycaster.ray.direction.x,raycaster.ray.direction.y,raycaster.ray.direction.z);
+    direction.y *= 1000;
+    direction.x*= 1000;
+    direction.z*=1000;
+
+
+    // addAsLine(raycaster.ray.origin,direction,0xff00ff);
+    for(var i = 0; i < intersections.length; i++){
+        var obj = intersections[i];
+        // console.log(obj);
+        console.log("Intersection : " +obj.object.position.x);
+        console.log("Intersection : " +obj.object.position.y);
+        console.log("Intersection : " +obj.object.position.z);
+
+        compute_rebound(raycaster.ray.direction,obj, level)
     }
 
 }
