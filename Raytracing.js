@@ -122,7 +122,7 @@ var pz;
 function setupBackGround(scene) {
     //everything will be in our 5x5 box
     var plane = new THREE.PlaneGeometry(10, 10);
-    var materialRed = new THREE.MeshPhongMaterial({color: 0xff0000, specular: 0x440000, shininess: 50});
+    var materialRed = new THREE.MeshPhongMaterial({color: 0xff0000, specular: 0x440000, shininess: 50, vertexColors:THREE.FaceColors});
 
     ny = new THREE.Mesh(plane, materialRed);
     ny.position.set(0, -5, 0);
@@ -131,7 +131,7 @@ function setupBackGround(scene) {
     py.position.set(0, 5, 0);
     py.rotation.set((-Math.PI / 2.0, 0, 0));
 
-    var materialGreen = new THREE.MeshPhongMaterial({color: 0x00ff00, specular: 0x004400, shininess: 50});
+    var materialGreen = new THREE.MeshPhongMaterial({color: 0x00ff00, specular: 0x004400, shininess: 50,vertexColors:THREE.FaceColors});
 
     nx = new THREE.Mesh(plane, materialGreen);
     nx.position.set(-5, 0, 0);
@@ -140,7 +140,7 @@ function setupBackGround(scene) {
     px.position.set(5, 0, 0);
     px.rotation.y = Math.PI / 2.0;
 
-    var materialBlue = new THREE.MeshPhongMaterial({color: 0x0000ff, specular: 0x000044, shininess: 50});
+    var materialBlue = new THREE.MeshPhongMaterial({color: 0x0000ff, specular: 0x000044, shininess: 50,vertexColors:THREE.FaceColors});
 
 
     pz = new THREE.Mesh(plane, materialBlue);
@@ -165,7 +165,7 @@ function setupBackGround(scene) {
  */
 function setup_objects(scene) {
     var sphere = new THREE.SphereGeometry(1, 32, 48);
-    var materialWhite = new THREE.MeshPhongMaterial({color: 0xffffff, specular: 0x111111, shininess: 40});
+    var materialWhite = new THREE.MeshPhongMaterial({color: 0xffffff, specular: 0x111111, shininess: 40,vertexColors:THREE.FaceColors});
 
     var obj = new THREE.Mesh(sphere, materialWhite);
     obj.position.set(0, -4, 0);
@@ -273,22 +273,25 @@ function compute_rebound(ray, object, level){
     var face = object.face;
     console.log("At level "+level+", " +object);
     if(face != null) {
-        face.color = 0xff0000;
-        var matrix = object.object.matrix;
-        var rotation = new THREE.Matrix4();
-        rotation.extractRotation(matrix);
-        var facenormal = face.normal.applyMatrix4(rotation);
+        face.color = 0x000000;
+        var matrix = object.object.matrixWorld;
+        // var matrix = object.object.modelViewMatrix;
+        // var rotation = new THREE.Matrix4();
+        // rotation.extractRotation(matrix);
+        // var facenormal = face.normal.applyMatrix4(rotation);
+        var quartenion = object.object.quaternion;
+        var facenormal = face.normal.applyQuaternion(quartenion);
         var vertexnormal = face.vertexNormals;
         console.log("Test");
 
 
         var reflect = ray.reflect(facenormal.normalize()).normalize();
         raytrace(origin,reflect, level+1);
-
-        reflect.x *= 1000;
-        reflect.y *= 1000;
-        reflect.z *= 1000;
-        addAsLine(origin, reflect, 0xffff00);
+        var reflectThousand = new THREE.Vector3(
+        reflect.x * 1000,
+        reflect.y * 1000,
+        reflect.z * 1000);
+        addAsLine(origin, reflectThousand, 0xffff00);
         var norm = new THREE.Vector3(facenormal.x*10+origin.x,facenormal.y*10+origin.y,facenormal.z*10+origin.z);
         addAsLine(origin,norm,0x000000);
         //So we need to work with ray.reflect on the face normal. It might look weird on the testing.
@@ -337,13 +340,7 @@ function raytrace(origin, dir, level){
     //we only want the first intersect..
 
     console.log(raycaster.ray.origin.x+";"+raycaster.ray.origin.y+":"+raycaster.ray.origin.z);
-    var direction = new THREE.Vector3(raycaster.ray.direction.x,raycaster.ray.direction.y,raycaster.ray.direction.z);
-    direction.y *= 1000;
-    direction.x*= 1000;
-    direction.z*=1000;
 
-
-    // addAsLine(raycaster.ray.origin,direction,0xff00ff);
     for(var i = 0; i < intersections.length; i++){
         var obj = intersections[i];
         // console.log(obj);
@@ -363,16 +360,19 @@ function raytrace(origin, dir, level){
  * @param end
  * @param color
  */
+var debug = false;
 function addAsLine(origin, end,color){
-    var material = new THREE.LineBasicMaterial({color: color});
-    var geometry = new THREE.Geometry();
-    geometry.vertices.push(
-        origin,
-        end
-    );
-    var line = new THREE.Line(geometry, material);
+    if(debug) {
+        var material = new THREE.LineBasicMaterial({color: color});
+        var geometry = new THREE.Geometry();
+        geometry.vertices.push(
+            origin,
+            end
+        );
+        var line = new THREE.Line(geometry, material);
 
-    dummy.add(line);
+        dummy.add(line);
+    }
 
 }
 
