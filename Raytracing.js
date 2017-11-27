@@ -230,8 +230,6 @@ function raytrace_click(event) {
     var intersections = raycaster.intersectObjects(scene.children,true);
     //we only want the first intersect..
 
-    console.log(raycaster.ray.origin.x+";"+raycaster.ray.origin.y+":"+raycaster.ray.origin.z);
-    console.log(camera.position.x+";"+camera.position.y+":"+camera.position.z);
     var direction = new THREE.Vector3(raycaster.ray.direction.x,raycaster.ray.direction.y,raycaster.ray.direction.z);
     direction.y *= 1000;
     direction.x*= 1000;
@@ -263,18 +261,23 @@ function raytrace_click(event) {
  * take care when handling the ray you might want to use ray.direction.
  * @param ray
  * @param object
+ * @param level of recursion
  */
 function compute_rebound(ray, object, level){
     //objct has point of intersection in world coord,
     //face intersected
     //uv coord at point of intersection.
+
+    //we need to apply the model view matrix to the facenormal..
     var origin = object.point;
     var face = object.face;
-    console.log(object);
+    console.log("At level "+level+", " +object);
     if(face != null) {
         face.color = 0xff0000;
-
-        var facenormal = face.normal
+        var matrix = object.object.matrix;
+        var rotation = new THREE.Matrix4();
+        rotation.extractRotation(matrix);
+        var facenormal = face.normal.applyMatrix4(rotation);
         var vertexnormal = face.vertexNormals;
         console.log("Test");
 
@@ -286,7 +289,8 @@ function compute_rebound(ray, object, level){
         reflect.y *= 1000;
         reflect.z *= 1000;
         addAsLine(origin, reflect, 0xffff00);
-        addAsLine(origin,facenormal,0x000000);
+        var norm = new THREE.Vector3(facenormal.x*10+origin.x,facenormal.y*10+origin.y,facenormal.z*10+origin.z);
+        addAsLine(origin,norm,0x000000);
         //So we need to work with ray.reflect on the face normal. It might look weird on the testing.
         //but it seems okay.
         //now we need to recurse on this ray a set level (say 3 to start with)
@@ -325,6 +329,7 @@ var MAXLEVEL = 3;
  * @param level the level of recursion.
  */
 function raytrace(origin, dir, level){
+    if(level >= MAXLEVEL){return;}
     var raycaster = new THREE.Raycaster();
     raycaster.set(origin,dir);
 
