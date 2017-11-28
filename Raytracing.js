@@ -21,9 +21,10 @@ function handleKeyPress(event) {
 
 
 //we start with a normal presentation....
-
+var WIDTH = 400.0;
+var HEIGHT = 300.0;
 function cameraSetup(scene) {
-    camera = new THREE.PerspectiveCamera(60, 800.0/600.0, 0.5, 100);
+    camera = new THREE.PerspectiveCamera(60, WIDTH/HEIGHT, 0.5, 100);
     camera.position.set(4, 4, 4);
     camera.lookAt(new THREE.Vector3(0, 0, 0));
 }
@@ -138,9 +139,9 @@ function setupBackGround(scene) {
     nz.position.set(0, 0, -5);
 
     //add all that background...
-    dummy.add(px);
-    dummy.add(py);
-    dummy.add(pz);
+    // dummy.add(px);
+    // dummy.add(py);
+    // dummy.add(pz);
     dummy.add(nx);
     dummy.add(ny);
     dummy.add(nz);
@@ -169,12 +170,19 @@ var scene;
 function start() {
     window.onclick = raytrace_click;
     window.onkeypress = handleKeyPress;
+    setupFirstCanvas();
 
+    setupRayCanvas();
+
+
+
+}
+
+function setupFirstCanvas(){
     scene = new THREE.Scene();
     var ourCanvas = document.getElementById('theCanvas');
     var renderer = new THREE.WebGLRenderer({canvas: ourCanvas});
     renderer.setClearColor(0xf0f0f0);
-    // renderer.setSize(window.innerWidth,window.innerHeight);
 
     //do all the stuff.
     dummy = new THREE.Object3D();
@@ -183,28 +191,59 @@ function start() {
     setupLights(scene);
     setupBackGround(scene);
     setup_objects(scene);
-    // add_axis(scene);
-    // add_origin_cube(scene);
 
-    var render = function () {
-        renderer.render(scene, camera);
-        requestAnimationFrame(render);
-
-    }
-    render();
-
+    // function render(){
+    //     renderer.render(scene,camera);
+    //     requestAnimationFrame(render);
+    // }
+    // render();
+    renderer.render(scene,camera);
 
 }
+function setupRayCanvas(){
+    var ourCanvas = document.getElementById('canvasRay');
+    var context = ourCanvas.getContext('2d' );
 
+    var image = context.getImageData(0,0,400,300);
+    var data = image.data;
+    var idx = 0;
+    //this is not very three.js like or what we learnt.
+    //however it was the easiest way
+    for(var y = 0; y < HEIGHT; y++){
 
+        for(var x = 0; x < WIDTH;x++){
+            var perc = (x*HEIGHT+y)/(WIDTH*HEIGHT)*100.0;
+            perc = Math.floor(perc);
+            if(perc % 10 === 0) {
+                console.log("Percentage :" + perc);
+            }
+
+            //we need to compute it in NFC
+            var xNFC = x / WIDTH*2 - 1;
+            var yNFC = -(y / HEIGHT)*2 + 1;
+            //TODO in here we need to do our little computation for every pixel :)
+            var c = new THREE.Color();
+            c.set(spawn_raytracer(xNFC,yNFC));
+
+            data[idx] = c.r*255;//r
+            data[idx+1] = c.g*255;//g
+            data[idx+2] = c.b*255;//b
+            data[idx+3] = 255;//a
+            idx+=4;
+        }
+    }
+
+    context.putImageData(image,0,0);
+
+}
 var raycaster = new THREE.Raycaster();
 
 //playing around with the Raytracer options....
 function raytrace_click(event) {
 
-    if(event.clientX > 800 || event.clientY > 600){console.log("TOOOUT:"+event.x+":"+event.y);return;}
-    var x = event.clientX / 800.0*2 - 1;
-    var y = -(event.clientY / 600.0)*2 + 1;
+    if(event.clientX > WIDTH || event.clientY > HEIGHT){console.log("TOOOUT:"+event.x+":"+event.y);return;}
+    var x = event.clientX / WIDTH*2 - 1;
+    var y = -(event.clientY / HEIGHT)*2 + 1;
     console.log(event);
 
     console.log("Casting a ray at pos : (" + x + "," + y + ")");
@@ -351,7 +390,7 @@ function raytrace(origin, dir, level){
  * @param end
  * @param color
  */
-var debug = true;
+var debug = false;
 function addAsLine(origin, end,color){
     if(debug) {
         var material = new THREE.LineBasicMaterial({color: color});
@@ -404,19 +443,29 @@ function spawn_raytracer(x,y){
         addAsLine(raycaster.ray.origin, direction, 0xff00ff);
     }
 
-    if(intersections.length > 0){
-        var obj = intersections[0];
-        // console.log(obj);
-        if(debug) {
-            console.log("Intersection : " + obj.object.position.x);
-            console.log("Intersection : " + obj.object.position.y);
-            console.log("Intersection : " + obj.object.position.z);
-        }
+    if(intersections.length>0){
+        var hitObj = intersections[0];
 
-        // obj.object.material.color.set(0x111111);
+        // // console.log(obj);
+        // if(debug) {
+        //     console.log("Intersection : " + obj.object.position.x);
+        //     console.log("Intersection : " + obj.object.position.y);
+        //     console.log("Intersection : " + obj.object.position.z);
+        // }
+        //
+        // // obj.object.material.color.set(0x111111);
+        //
+        // obj.face.color.set(compute_color(raycaster.ray.direction,obj,0));
+        // console.log(x+","+y+" HIT");
+        return hitObj.object.material.color;
+    }else{
+        //no hit so we return the ambiant color..
 
-        obj.face.color.set(compute_color(raycaster.ray.direction,obj,0));
+        // console.log(" MISS");
+        return new THREE.Color(0.0,0.0,0.0);
     }
+
+
 
 }
 
@@ -450,6 +499,9 @@ function compute_color(direction,object,level){
 }
 
 function ads_shading(object,color){
+//recall the phong model of lighting...
+    //TODO ask teacher how to do it..???
+
 
 }
 
@@ -473,7 +525,7 @@ function raytrace_color(origin, direction, level){
         console.log("Intersection : " +obj.object.position.y);
         console.log("Intersection : " +obj.object.position.z);
 
-        return compute_color(raycaster.ray.direction,obj, level)
+        return compute_color(raycaster.ray.direction,obj, level);
     }
 
     //if no intersection we return 0..
@@ -489,15 +541,21 @@ function raytrace_color(origin, direction, level){
  * @returns {number}
  */
 function coeff_level(level){
-    if(level === 0){
-        return 0.5;
-    }else if(level === 1){
-        return 0.25;
-    }else if(level === 2){
-        return 0.125;
-    }
-    return 0;
+    return 1;
+    // if(level === 0){
+    //     return 0.5;
+    // }else if(level === 1){
+    //     return 0.25;
+    // }else if(level === 2){
+    //     return 0.125;
+    // }
+    // return 0;
 }
+
+
+
+
+
 
 
 

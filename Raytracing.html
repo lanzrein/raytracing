@@ -9,9 +9,15 @@
 <style>*{margin : 0;padding:0;}</style>
 
 
-<canvas id="theCanvas" width="800" height="600">
+<canvas id="theCanvas" width="400" height="300">
     Please use a browser that supports "canvas"
 </canvas>
+<div id='d1' style="left:400px; z-index:2">
+<canvas id="canvasRay" width="400" height="300">
+    Please use a browser that supports "canvas"
+
+</canvas>
+</div>
 
 <script src="three.js"></script>
 <script src="OBJLoader.js"></script>
@@ -19,7 +25,8 @@
 <script src="Raytracing.js"></script>
 
 <script>
-        window.onload= start </script>
+        window.onload= start
+</script>
 
 </body>
 </html>
