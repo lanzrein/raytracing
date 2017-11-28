@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04a6afe5-ca77-4011-9993-541cf6d8542e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Raytracing.html" afterPath="$PROJECT_DIR$/Raytracing.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Raytracing.js" afterPath="$PROJECT_DIR$/Raytracing.js" />
     </list>
@@ -21,8 +20,8 @@
       <file leaf-file-name="Raytracing.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Raytracing.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="14" column="20" lean-forward="false" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+            <state relative-caret-position="525">
+              <caret line="25" column="20" lean-forward="false" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -33,8 +32,8 @@
       <file leaf-file-name="Raytracing.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Raytracing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="155" column="0" lean-forward="false" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
+            <state relative-caret-position="208">
+              <caret line="355" column="28" lean-forward="true" selection-start-line="355" selection-start-column="28" selection-end-line="355" selection-end-column="28" />
               <folding>
                 <element signature="n#!!block;n#getChar#0" expanded="false" />
                 <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
@@ -43,17 +42,18 @@
                 <element signature="n#!!block;n#setupLights#0" expanded="false" />
                 <element signature="n#!!block;n#add_axis#0" expanded="false" />
                 <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-                <element signature="e#2665#2871#0" expanded="false" />
+                <element signature="e#2742#2948#0" expanded="false" />
                 <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
                 <element signature="n#!!block;n#setup_objects#0" expanded="false" />
                 <element signature="n#!!block;n#start#0" expanded="false" />
+                <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
+                <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
                 <element signature="n#!!block;n#compute_rebound#0" expanded="false" />
                 <element signature="n#!!doc;n#raytrace#0" expanded="false" />
                 <element signature="n#!!block;n#raytrace#0" expanded="false" />
-                <element signature="n#!!block;n#addAsLine#0" expanded="false" />
-                <element signature="e#12618#12900#0" expanded="false" />
+                <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+                <element signature="e#10877#11159#0" expanded="false" />
                 <element signature="n#!!block;n#compute_color#0" expanded="false" />
-                <element signature="n#!!block;n#ads_shading#0" expanded="false" />
                 <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
                 <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
                 <element signature="n#!!block;n#coeff_level#0" expanded="false" />
@@ -96,6 +96,7 @@
     <findStrings>
       <find>MAXLEVEL</find>
       <find>600</find>
+      <find>sphere</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -106,6 +107,7 @@
       <list>
         <option value="$PROJECT_DIR$/three.js" />
         <option value="$PROJECT_DIR$/Raytracing.html" />
+        <option value="$PROJECT_DIR$/.idea/raytracing_debug.js" />
         <option value="$PROJECT_DIR$/Raytracing.js" />
       </list>
     </option>
@@ -116,7 +118,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="952" />
     <option name="width" value="976" />
     <option name="height" value="1038" />
@@ -137,6 +139,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -148,7 +151,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -194,18 +196,17 @@
       <workItem from="1511819772854" duration="6000" />
       <workItem from="1511825327093" duration="4880000" />
       <workItem from="1511883268708" duration="2381000" />
-      <workItem from="1511889123661" duration="7837000" />
+      <workItem from="1511889123661" duration="8265000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44417000" />
+    <option name="totallyTimeSpent" value="44845000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="952" y="0" width="976" height="1038" extended-state="0" />
-    <editor active="true" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50104386" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.50104165" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -284,17 +285,18 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2665#2871#0" expanded="false" />
+            <element signature="e#2742#2948#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#start#0" expanded="false" />
+            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
             <element signature="n#!!block;n#compute_rebound#0" expanded="false" />
             <element signature="n#!!doc;n#raytrace#0" expanded="false" />
             <element signature="n#!!block;n#raytrace#0" expanded="false" />
-            <element signature="n#!!block;n#addAsLine#0" expanded="false" />
-            <element signature="e#12618#12900#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#10877#11159#0" expanded="false" />
             <element signature="n#!!block;n#compute_color#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
@@ -324,17 +326,18 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2665#2871#0" expanded="false" />
+            <element signature="e#2742#2948#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#start#0" expanded="false" />
+            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
             <element signature="n#!!block;n#compute_rebound#0" expanded="false" />
             <element signature="n#!!doc;n#raytrace#0" expanded="false" />
             <element signature="n#!!block;n#raytrace#0" expanded="false" />
-            <element signature="n#!!block;n#addAsLine#0" expanded="false" />
-            <element signature="e#12618#12900#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#10877#11159#0" expanded="false" />
             <element signature="n#!!block;n#compute_color#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
@@ -372,17 +375,18 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2665#2871#0" expanded="false" />
+            <element signature="e#2742#2948#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#start#0" expanded="false" />
+            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
             <element signature="n#!!block;n#compute_rebound#0" expanded="false" />
             <element signature="n#!!doc;n#raytrace#0" expanded="false" />
             <element signature="n#!!block;n#raytrace#0" expanded="false" />
-            <element signature="n#!!block;n#addAsLine#0" expanded="false" />
-            <element signature="e#12618#12900#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#10877#11159#0" expanded="false" />
             <element signature="n#!!block;n#compute_color#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
@@ -428,17 +432,18 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2665#2871#0" expanded="false" />
+            <element signature="e#2742#2948#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#start#0" expanded="false" />
+            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
             <element signature="n#!!block;n#compute_rebound#0" expanded="false" />
             <element signature="n#!!doc;n#raytrace#0" expanded="false" />
             <element signature="n#!!block;n#raytrace#0" expanded="false" />
-            <element signature="n#!!block;n#addAsLine#0" expanded="false" />
-            <element signature="e#12618#12900#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#10877#11159#0" expanded="false" />
             <element signature="n#!!block;n#compute_color#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
@@ -476,17 +481,18 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2665#2871#0" expanded="false" />
+            <element signature="e#2742#2948#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#start#0" expanded="false" />
+            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
             <element signature="n#!!block;n#compute_rebound#0" expanded="false" />
             <element signature="n#!!doc;n#raytrace#0" expanded="false" />
             <element signature="n#!!block;n#raytrace#0" expanded="false" />
-            <element signature="n#!!block;n#addAsLine#0" expanded="false" />
-            <element signature="e#12618#12900#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#10877#11159#0" expanded="false" />
             <element signature="n#!!block;n#compute_color#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
@@ -524,17 +530,18 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2665#2871#0" expanded="false" />
+            <element signature="e#2742#2948#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#start#0" expanded="false" />
+            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
             <element signature="n#!!block;n#compute_rebound#0" expanded="false" />
             <element signature="n#!!doc;n#raytrace#0" expanded="false" />
             <element signature="n#!!block;n#raytrace#0" expanded="false" />
-            <element signature="n#!!block;n#addAsLine#0" expanded="false" />
-            <element signature="e#12618#12900#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#10877#11159#0" expanded="false" />
             <element signature="n#!!block;n#compute_color#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
@@ -572,17 +579,18 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2665#2871#0" expanded="false" />
+            <element signature="e#2742#2948#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#start#0" expanded="false" />
+            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
             <element signature="n#!!block;n#compute_rebound#0" expanded="false" />
             <element signature="n#!!doc;n#raytrace#0" expanded="false" />
             <element signature="n#!!block;n#raytrace#0" expanded="false" />
-            <element signature="n#!!block;n#addAsLine#0" expanded="false" />
-            <element signature="e#12618#12900#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#10877#11159#0" expanded="false" />
             <element signature="n#!!block;n#compute_color#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
@@ -620,17 +628,18 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2665#2871#0" expanded="false" />
+            <element signature="e#2742#2948#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#start#0" expanded="false" />
+            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
             <element signature="n#!!block;n#compute_rebound#0" expanded="false" />
             <element signature="n#!!doc;n#raytrace#0" expanded="false" />
             <element signature="n#!!block;n#raytrace#0" expanded="false" />
-            <element signature="n#!!block;n#addAsLine#0" expanded="false" />
-            <element signature="e#12618#12900#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#10877#11159#0" expanded="false" />
             <element signature="n#!!block;n#compute_color#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
@@ -668,17 +677,18 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2665#2871#0" expanded="false" />
+            <element signature="e#2742#2948#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#start#0" expanded="false" />
+            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
             <element signature="n#!!block;n#compute_rebound#0" expanded="false" />
             <element signature="n#!!doc;n#raytrace#0" expanded="false" />
             <element signature="n#!!block;n#raytrace#0" expanded="false" />
-            <element signature="n#!!block;n#addAsLine#0" expanded="false" />
-            <element signature="e#12618#12900#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#10877#11159#0" expanded="false" />
             <element signature="n#!!block;n#compute_color#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
@@ -716,17 +726,18 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2665#2871#0" expanded="false" />
+            <element signature="e#2742#2948#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#start#0" expanded="false" />
+            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
             <element signature="n#!!block;n#compute_rebound#0" expanded="false" />
             <element signature="n#!!doc;n#raytrace#0" expanded="false" />
             <element signature="n#!!block;n#raytrace#0" expanded="false" />
-            <element signature="n#!!block;n#addAsLine#0" expanded="false" />
-            <element signature="e#12618#12900#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#10877#11159#0" expanded="false" />
             <element signature="n#!!block;n#compute_color#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
@@ -756,17 +767,18 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2665#2871#0" expanded="false" />
+            <element signature="e#2742#2948#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#start#0" expanded="false" />
+            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
             <element signature="n#!!block;n#compute_rebound#0" expanded="false" />
             <element signature="n#!!doc;n#raytrace#0" expanded="false" />
             <element signature="n#!!block;n#raytrace#0" expanded="false" />
-            <element signature="n#!!block;n#addAsLine#0" expanded="false" />
-            <element signature="e#12618#12900#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#10877#11159#0" expanded="false" />
             <element signature="n#!!block;n#compute_color#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
@@ -804,17 +816,18 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2665#2871#0" expanded="false" />
+            <element signature="e#2742#2948#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#start#0" expanded="false" />
+            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
             <element signature="n#!!block;n#compute_rebound#0" expanded="false" />
             <element signature="n#!!doc;n#raytrace#0" expanded="false" />
             <element signature="n#!!block;n#raytrace#0" expanded="false" />
-            <element signature="n#!!block;n#addAsLine#0" expanded="false" />
-            <element signature="e#12618#12900#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#10877#11159#0" expanded="false" />
             <element signature="n#!!block;n#compute_color#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
@@ -852,17 +865,18 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2665#2871#0" expanded="false" />
+            <element signature="e#2742#2948#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#start#0" expanded="false" />
+            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
             <element signature="n#!!block;n#compute_rebound#0" expanded="false" />
             <element signature="n#!!doc;n#raytrace#0" expanded="false" />
             <element signature="n#!!block;n#raytrace#0" expanded="false" />
-            <element signature="n#!!block;n#addAsLine#0" expanded="false" />
-            <element signature="e#12618#12900#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#10877#11159#0" expanded="false" />
             <element signature="n#!!block;n#compute_color#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
@@ -900,17 +914,18 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2665#2871#0" expanded="false" />
+            <element signature="e#2742#2948#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#start#0" expanded="false" />
+            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
             <element signature="n#!!block;n#compute_rebound#0" expanded="false" />
             <element signature="n#!!doc;n#raytrace#0" expanded="false" />
             <element signature="n#!!block;n#raytrace#0" expanded="false" />
-            <element signature="n#!!block;n#addAsLine#0" expanded="false" />
-            <element signature="e#12618#12900#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#10877#11159#0" expanded="false" />
             <element signature="n#!!block;n#compute_color#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
@@ -941,16 +956,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Raytracing.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="20" lean-forward="false" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/three.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
@@ -967,10 +972,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Raytracing.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="25" column="20" lean-forward="false" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/raytracing_debug.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="71" column="1" lean-forward="false" selection-start-line="71" selection-start-column="1" selection-end-line="71" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Raytracing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="155" column="0" lean-forward="false" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
+        <state relative-caret-position="208">
+          <caret line="355" column="28" lean-forward="true" selection-start-line="355" selection-start-column="28" selection-end-line="355" selection-end-column="28" />
           <folding>
             <element signature="n#!!block;n#getChar#0" expanded="false" />
             <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
@@ -979,17 +1002,18 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2665#2871#0" expanded="false" />
+            <element signature="e#2742#2948#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#start#0" expanded="false" />
+            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
             <element signature="n#!!block;n#compute_rebound#0" expanded="false" />
             <element signature="n#!!doc;n#raytrace#0" expanded="false" />
             <element signature="n#!!block;n#raytrace#0" expanded="false" />
-            <element signature="n#!!block;n#addAsLine#0" expanded="false" />
-            <element signature="e#12618#12900#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#10877#11159#0" expanded="false" />
             <element signature="n#!!block;n#compute_color#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />

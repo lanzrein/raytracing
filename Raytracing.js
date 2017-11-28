@@ -1,5 +1,15 @@
+var MAXLEVEL = 3;
+
+var debug = false;
+var WIDTH = 400.0;
+var HEIGHT = 300.0;
+
 //camera thingy..
 var camera;
+//for threejs
+var dummy;
+var scene;
+
 
 //translate keypress events to strings
 //from http://javascript.info/tutorial/keyboard-events
@@ -21,8 +31,7 @@ function handleKeyPress(event) {
 
 
 //we start with a normal presentation....
-var WIDTH = 400.0;
-var HEIGHT = 300.0;
+
 function cameraSetup(scene) {
     camera = new THREE.PerspectiveCamera(60, WIDTH/HEIGHT, 0.5, 100);
     camera.position.set(4, 4, 4);
@@ -164,8 +173,6 @@ function setup_objects(scene) {
 }
 
 
-var dummy;
-var scene;
 
 function start() {
     window.onclick = raytrace_click;
@@ -236,52 +243,7 @@ function setupRayCanvas(){
     context.putImageData(image,0,0);
 
 }
-var raycaster = new THREE.Raycaster();
 
-//playing around with the Raytracer options....
-function raytrace_click(event) {
-
-    if(event.clientX > WIDTH || event.clientY > HEIGHT){console.log("TOOOUT:"+event.x+":"+event.y);return;}
-    var x = event.clientX / WIDTH*2 - 1;
-    var y = -(event.clientY / HEIGHT)*2 + 1;
-    console.log(event);
-
-    console.log("Casting a ray at pos : (" + x + "," + y + ")");
-    //we need to compute it to a frame that can be interpretated by both..
-    //(x,y,+inf) are clip coordinate.
-    //then make a ray from camera but convert it in clip coordinate...
-    //
-    var vec = new THREE.Vector2(x, y);
-
-    raycaster.setFromCamera(vec, camera);
-    // console.log(raycaster.ray.direction);
-    var intersections = raycaster.intersectObjects(scene.children,true);
-    //we only want the first intersect..
-
-    var direction = new THREE.Vector3(raycaster.ray.direction.x,raycaster.ray.direction.y,raycaster.ray.direction.z);
-    direction.y *= 1000;
-    direction.x*= 1000;
-    direction.z*=1000;
-
-
-    addAsLine(raycaster.ray.origin,direction,0xff00ff);
-    if(intersections.length > 0){
-        var obj = intersections[0];
-        // console.log(obj);
-        console.log("Intersection : " +obj.object.position.x);
-        console.log("Intersection : " +obj.object.position.y);
-        console.log("Intersection : " +obj.object.position.z);
-
-        // obj.object.material.color.set(0x111111);
-        compute_rebound(raycaster.ray.direction,obj,0)
-    }
-
-
-
-
-
-
-}
 
 /**
  * Compute the rebound and what to do with it.
@@ -353,7 +315,6 @@ function compute_rebound(ray, object, level){
 
 }
 
-var MAXLEVEL = 3;
 /**
  * Do the ray tracing work with a basic given line.
  *
@@ -383,28 +344,7 @@ function raytrace(origin, dir, level){
 
 }
 
-/**
- * debugging function.
- * creates a line from origin to end with said color.
- * @param origin
- * @param end
- * @param color
- */
-var debug = false;
-function addAsLine(origin, end,color){
-    if(debug) {
-        var material = new THREE.LineBasicMaterial({color: color});
-        var geometry = new THREE.Geometry();
-        geometry.vertices.push(
-            origin,
-            end
-        );
-        var line = new THREE.Line(geometry, material);
 
-        dummy.add(line);
-    }
-
-}
 
 
 /**********************************************************************
@@ -424,6 +364,15 @@ function addAsLine(origin, end,color){
  **********************************************************************/
 //first hit is where we spawn the ray - and the first intersection is where we need to decide the
 //color
+var raycaster = new THREE.Raycaster();
+
+/**
+ * Spawn a ray tracer from the given coordinare.
+ * They are already in NFC
+ * @param x x coord in NFC
+ * @param y y coord in NFC
+ * @returns {H} the color.
+ */
 function spawn_raytracer(x,y){
     //make a vector.
     var vec = new THREE.Vector2(x, y);
@@ -445,18 +394,7 @@ function spawn_raytracer(x,y){
 
     if(intersections.length>0){
         var hitObj = intersections[0];
-
-        // // console.log(obj);
-        // if(debug) {
-        //     console.log("Intersection : " + obj.object.position.x);
-        //     console.log("Intersection : " + obj.object.position.y);
-        //     console.log("Intersection : " + obj.object.position.z);
-        // }
-        //
-        // // obj.object.material.color.set(0x111111);
-        //
-        // obj.face.color.set(compute_color(raycaster.ray.direction,obj,0));
-        // console.log(x+","+y+" HIT");
+        //TODO here instead of returning the color we need to do the ADS Computation.
         return hitObj.object.material.color;
     }else{
         //no hit so we return the ambiant color..
@@ -498,6 +436,12 @@ function compute_color(direction,object,level){
 
 }
 
+/**
+ * TODO
+ * compute the color
+ * @param object
+ * @param color
+ */
 function ads_shading(object,color){
 //recall the phong model of lighting...
     //TODO ask teacher how to do it..???
