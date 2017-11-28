@@ -16,18 +16,7 @@ function getChar(event) {
 //given
 function handleKeyPress(event) {
     var ch = getChar(event);
-    objectRotation(ch)
     if (cameraControl(camera, ch)) return;
-}
-
-//handle stopping the rabbit
-function objectRotation(ch) {
-    switch (ch) {
-        case ' ':
-            paused = !paused;
-            return true;
-        default:
-    }
 }
 
 
@@ -122,7 +111,7 @@ var pz;
 function setupBackGround(scene) {
     //everything will be in our 5x5 box
     var plane = new THREE.PlaneGeometry(10, 10);
-    var materialRed = new THREE.MeshPhongMaterial({color: 0xff0000, specular: 0x440000, shininess: 50, vertexColors:THREE.FaceColors});
+    var materialRed = new THREE.MeshPhongMaterial({color: 0xff0000, specular: 0x440000, shininess: 50, vertexColors: THREE.FaceColors});
 
     ny = new THREE.Mesh(plane, materialRed);
     ny.position.set(0, -5, 0);
@@ -131,7 +120,7 @@ function setupBackGround(scene) {
     py.position.set(0, 5, 0);
     py.rotation.set((-Math.PI / 2.0, 0, 0));
 
-    var materialGreen = new THREE.MeshPhongMaterial({color: 0x00ff00, specular: 0x004400, shininess: 50,vertexColors:THREE.FaceColors});
+    var materialGreen = new THREE.MeshPhongMaterial({color: 0x00ff00, specular: 0x004400, shininess: 50,vertexColors: THREE.FaceColors});
 
     nx = new THREE.Mesh(plane, materialGreen);
     nx.position.set(-5, 0, 0);
@@ -140,7 +129,7 @@ function setupBackGround(scene) {
     px.position.set(5, 0, 0);
     px.rotation.y = Math.PI / 2.0;
 
-    var materialBlue = new THREE.MeshPhongMaterial({color: 0x0000ff, specular: 0x000044, shininess: 50,vertexColors:THREE.FaceColors});
+    var materialBlue = new THREE.MeshPhongMaterial({color: 0x0000ff, specular: 0x000044, shininess: 50,vertexColors: THREE.FaceColors});
 
 
     pz = new THREE.Mesh(plane, materialBlue);
@@ -165,7 +154,7 @@ function setupBackGround(scene) {
  */
 function setup_objects(scene) {
     var sphere = new THREE.SphereGeometry(1, 32, 48);
-    var materialWhite = new THREE.MeshPhongMaterial({color: 0xffffff, specular: 0x111111, shininess: 40,vertexColors:THREE.FaceColors});
+    var materialWhite = new THREE.MeshPhongMaterial({color: 0xffffff, specular: 0x111111, shininess: 40,vertexColors: THREE.FaceColors});
 
     var obj = new THREE.Mesh(sphere, materialWhite);
     obj.position.set(0, -4, 0);
@@ -273,7 +262,8 @@ function compute_rebound(ray, object, level){
     var face = object.face;
     console.log("At level "+level+", " +object);
     if(face != null) {
-        face.color = 0x000000;
+        //TODO Why does it not apply the color. ????
+        face.color = new THREE.Color(0.0,0.0,0.0);
         var matrix = object.object.matrixWorld;
         // var matrix = object.object.modelViewMatrix;
         // var rotation = new THREE.Matrix4();
@@ -284,8 +274,9 @@ function compute_rebound(ray, object, level){
         var vertexnormal = face.vertexNormals;
         console.log("Test");
 
-
-        var reflect = ray.reflect(facenormal.normalize()).normalize();
+        var reflect = new THREE.Vector3();
+        reflect.copy(ray);
+        reflect.reflect(facenormal.normalize()).normalize();
         raytrace(origin,reflect, level+1);
         var reflectThousand = new THREE.Vector3(
         reflect.x * 1000,
@@ -360,7 +351,7 @@ function raytrace(origin, dir, level){
  * @param end
  * @param color
  */
-var debug = false;
+var debug = true;
 function addAsLine(origin, end,color){
     if(debug) {
         var material = new THREE.LineBasicMaterial({color: color});
