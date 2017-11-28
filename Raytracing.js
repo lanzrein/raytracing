@@ -368,4 +368,136 @@ function addAsLine(origin, end,color){
 }
 
 
+/**********************************************************************
+ *
+ *
+ * FOLLOWING IS THE ACTUAL CODE (TENTATIVE) FOR THE PROJECT!
+ * idea :
+ * foreach pixel(x,y):
+ *      spawn_raytracer(x,y)
+ * .....
+ *
+ *
+ *
+ *
+ *
+ *
+ **********************************************************************/
+//first hit is where we spawn the ray - and the first intersection is where we need to decide the
+//color
+function spawn_raytracer(x,y){
+    //make a vector.
+    var vec = new THREE.Vector2(x, y);
+
+    raycaster.setFromCamera(vec, camera);
+    // console.log(raycaster.ray.direction);
+    var intersections = raycaster.intersectObjects(scene.children,true);
+    //we only want the first intersect..
+
+    if(debug) {
+        var direction = new THREE.Vector3(raycaster.ray.direction.x, raycaster.ray.direction.y, raycaster.ray.direction.z);
+        direction.y *= 1000;
+        direction.x *= 1000;
+        direction.z *= 1000;
+
+
+        addAsLine(raycaster.ray.origin, direction, 0xff00ff);
+    }
+
+    if(intersections.length > 0){
+        var obj = intersections[0];
+        // console.log(obj);
+        if(debug) {
+            console.log("Intersection : " + obj.object.position.x);
+            console.log("Intersection : " + obj.object.position.y);
+            console.log("Intersection : " + obj.object.position.z);
+        }
+
+        // obj.object.material.color.set(0x111111);
+
+        obj.face.color.set(compute_color(raycaster.ray.direction,obj,0));
+    }
+
+}
+
+function compute_color(direction,object,level){
+
+    var origin = object.point;
+    var face = object.face;
+    console.log("At level "+level+", " +object);
+    if(face != null) {
+        var matrix = object.object.matrixWorld;
+
+        var quartenion = object.object.quaternion;
+        var facenormal = face.normal.applyQuaternion(quartenion);
+        var vertexnormal = face.vertexNormals;
+        console.log("Test");
+
+        var curr_color = new THREE.Color();
+        //TODO compute color according to ADS idea...
+        ads_shading(object, curr_color);
+
+
+        var reflect = new THREE.Vector3();
+        reflect.copy(ray);
+        reflect.reflect(facenormal.normalize()).normalize();
+        return curr_color + (raytrace_color(origin, reflect, level + 1))*coeff_level(level);
+
+
+
+    }
+
+}
+
+function ads_shading(object,color){
+
+}
+
+
+
+
+function raytrace_color(origin, direction, level){
+    if(level >= MAXLEVEL){return;}
+    var raycaster = new THREE.Raycaster();
+    raycaster.set(origin,direction);
+
+    var intersections = raycaster.intersectObjects(scene.children,true);
+    //we only want the first intersect..
+
+    console.log(raycaster.ray.origin.x+";"+raycaster.ray.origin.y+":"+raycaster.ray.origin.z);
+
+    if(intersections.length>0){
+        var obj = intersections[0];
+        // console.log(obj);
+        console.log("Intersection : " +obj.object.position.x);
+        console.log("Intersection : " +obj.object.position.y);
+        console.log("Intersection : " +obj.object.position.z);
+
+        return compute_color(raycaster.ray.direction,obj, level)
+    }
+
+    //if no intersection we return 0..
+    //maybe return 1 or whatever the background is...
+    return 0.0;
+
+}
+
+
+/**
+ * the coefficient of how much it influences the current level..
+ * @param level
+ * @returns {number}
+ */
+function coeff_level(level){
+    if(level === 0){
+        return 0.5;
+    }else if(level === 1){
+        return 0.25;
+    }else if(level === 2){
+        return 0.125;
+    }
+    return 0;
+}
+
+
 
