@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04a6afe5-ca77-4011-9993-541cf6d8542e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Raytracing.js" afterPath="$PROJECT_DIR$/Raytracing.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/raytracing_debug.js" afterPath="$PROJECT_DIR$/raytracing_debug.js" />
     </list>
@@ -32,8 +33,8 @@
       <file leaf-file-name="Raytracing.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Raytracing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="184" column="0" lean-forward="true" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="16" lean-forward="false" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
               <folding>
                 <element signature="n#!!block;n#getChar#0" expanded="false" />
                 <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
@@ -46,9 +47,7 @@
                 <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
                 <element signature="n#!!block;n#setup_objects#0" expanded="false" />
                 <element signature="n#!!block;n#setupScene#0" expanded="false" />
-                <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
-                <element signature="e#7565#7847#0" expanded="false" />
-                <element signature="n#!!block;n#ads_shading#0" expanded="false" />
+                <element signature="e#7305#7587#0" expanded="false" />
                 <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
                 <element signature="n#!!block;n#coeff_level#0" expanded="false" />
               </folding>
@@ -59,9 +58,10 @@
       <file leaf-file-name="raytracing_debug.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/raytracing_debug.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1722">
-              <caret line="103" column="49" lean-forward="true" selection-start-line="103" selection-start-column="49" selection-end-line="103" selection-end-column="49" />
+            <state relative-caret-position="148">
+              <caret line="85" column="20" lean-forward="true" selection-start-line="85" selection-start-column="20" selection-end-line="85" selection-end-column="20" />
               <folding>
+                <element signature="n#!!block;n#raytrace_click#0" expanded="false" />
                 <element signature="n#!!doc;n#raytrace#0" expanded="false" />
               </folding>
             </state>
@@ -81,7 +81,7 @@
       <file leaf-file-name="three.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/three.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
+            <state relative-caret-position="116592">
               <caret line="5552" column="12" lean-forward="false" selection-start-line="5552" selection-start-column="12" selection-end-line="5552" selection-end-column="12" />
               <folding />
             </state>
@@ -208,12 +208,13 @@
       <workItem from="1511825327093" duration="4880000" />
       <workItem from="1511883268708" duration="2381000" />
       <workItem from="1511889123661" duration="8265000" />
-      <workItem from="1511918993680" duration="3491000" />
+      <workItem from="1511918993680" duration="3510000" />
+      <workItem from="1511971215678" duration="2127000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48336000" />
+    <option name="totallyTimeSpent" value="50482000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="952" y="0" width="976" height="1038" extended-state="0" />
@@ -284,9 +285,7 @@
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
-            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
-            <element signature="e#7565#7847#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
+            <element signature="e#7305#7587#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -327,9 +326,7 @@
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
-            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
-            <element signature="e#7565#7847#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
+            <element signature="e#7305#7587#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -362,9 +359,7 @@
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
-            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
-            <element signature="e#7565#7847#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
+            <element signature="e#7305#7587#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -405,9 +400,7 @@
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
-            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
-            <element signature="e#7565#7847#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
+            <element signature="e#7305#7587#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -456,9 +449,7 @@
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
-            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
-            <element signature="e#7565#7847#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
+            <element signature="e#7305#7587#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -499,9 +490,7 @@
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
-            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
-            <element signature="e#7565#7847#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
+            <element signature="e#7305#7587#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -542,9 +531,7 @@
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
-            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
-            <element signature="e#7565#7847#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
+            <element signature="e#7305#7587#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -585,9 +572,7 @@
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
-            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
-            <element signature="e#7565#7847#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
+            <element signature="e#7305#7587#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -628,9 +613,7 @@
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
-            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
-            <element signature="e#7565#7847#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
+            <element signature="e#7305#7587#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -671,9 +654,7 @@
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
-            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
-            <element signature="e#7565#7847#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
+            <element signature="e#7305#7587#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -714,9 +695,7 @@
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
-            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
-            <element signature="e#7565#7847#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
+            <element signature="e#7305#7587#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -749,9 +728,7 @@
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
-            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
-            <element signature="e#7565#7847#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
+            <element signature="e#7305#7587#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -792,9 +769,7 @@
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
-            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
-            <element signature="e#7565#7847#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
+            <element signature="e#7305#7587#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -835,9 +810,7 @@
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
-            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
-            <element signature="e#7565#7847#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
+            <element signature="e#7305#7587#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -878,9 +851,7 @@
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
-            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
-            <element signature="e#7565#7847#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
+            <element signature="e#7305#7587#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -930,7 +901,7 @@
     <entry file="file://$PROJECT_DIR$/.idea/raytracing_debug.js" />
     <entry file="file://$PROJECT_DIR$/three.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
+        <state relative-caret-position="116592">
           <caret line="5552" column="12" lean-forward="false" selection-start-line="5552" selection-start-column="12" selection-end-line="5552" selection-end-column="12" />
           <folding />
         </state>
@@ -938,9 +909,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/raytracing_debug.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1722">
-          <caret line="103" column="49" lean-forward="true" selection-start-line="103" selection-start-column="49" selection-end-line="103" selection-end-column="49" />
+        <state relative-caret-position="148">
+          <caret line="85" column="20" lean-forward="true" selection-start-line="85" selection-start-column="20" selection-end-line="85" selection-end-column="20" />
           <folding>
+            <element signature="n#!!block;n#raytrace_click#0" expanded="false" />
             <element signature="n#!!doc;n#raytrace#0" expanded="false" />
           </folding>
         </state>
@@ -948,8 +920,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Raytracing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="184" column="0" lean-forward="true" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="16" lean-forward="false" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
           <folding>
             <element signature="n#!!block;n#getChar#0" expanded="false" />
             <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
@@ -962,9 +934,7 @@
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
-            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
-            <element signature="e#7565#7847#0" expanded="false" />
-            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
+            <element signature="e#7305#7587#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>

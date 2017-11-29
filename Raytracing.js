@@ -112,12 +112,9 @@ function add_origin_cube(scene) {
  * @param scene
  */
 //all the planes.
-var ny;
-var py;
-var nx;
-var px;
-var nz;
-var pz;
+var ny;//red
+var nx;//green
+var nz;//blue
 
 function setupBackGround(scene) {
     //everything will be in our 5x5 box
@@ -127,31 +124,22 @@ function setupBackGround(scene) {
     ny = new THREE.Mesh(plane, materialRed);
     ny.position.set(0, -5, 0);
     ny.rotation.set(-Math.PI / 2.0, 0, 0);
-    py = new THREE.Mesh(plane, materialRed);
-    py.position.set(0, 5, 0);
-    py.rotation.set((-Math.PI / 2.0, 0, 0));
+
 
     var materialGreen = new THREE.MeshPhongMaterial({color: 0x00ff00, specular: 0x004400, shininess: 50,vertexColors: THREE.FaceColors});
 
     nx = new THREE.Mesh(plane, materialGreen);
     nx.position.set(-5, 0, 0);
     nx.rotation.y = Math.PI / 2.0;
-    px = new THREE.Mesh(plane, materialGreen);
-    px.position.set(5, 0, 0);
-    px.rotation.y = Math.PI / 2.0;
 
     var materialBlue = new THREE.MeshPhongMaterial({color: 0x0000ff, specular: 0x000044, shininess: 50,vertexColors: THREE.FaceColors});
 
 
-    pz = new THREE.Mesh(plane, materialBlue);
-    pz.position.set(0, 0, 5);
     nz = new THREE.Mesh(plane, materialBlue);
     nz.position.set(0, 0, -5);
 
     //add all that background...
-    // dummy.add(px);
-    // dummy.add(py);
-    // dummy.add(pz);
+
     dummy.add(nx);
     dummy.add(ny);
     dummy.add(nz);
@@ -235,6 +223,11 @@ function setupRayCanvas(){
             var c = new THREE.Color();
             c.set(spawn_raytracer(x,y));
 
+            //modulate by MAXLEVEL.
+            c.r/=MAXLEVEL;
+            c.g/=MAXLEVEL;
+            c.b/=MAXLEVEL;
+
             data[idx] = c.r*255;//r
             data[idx+1] = c.g*255;//g
             data[idx+2] = c.b*255;//b
@@ -269,7 +262,7 @@ function setupRayCanvas(){
  */
 function spawn_raytracer(x,y){
     //convert to nfc
-    if(y === 177 && x === 178){
+    if(y === 144 && x === 182){
         console.log("debugging in js sucks");
     }
     var xNFC = x / WIDTH*2 - 1;
@@ -297,7 +290,7 @@ function spawn_raytracer(x,y){
         //TODO here instead of returning the color we need to do the ADS Computation.
         //since its the first hit object this is where the computation starts.
         var c = new THREE.Color();
-        c.set(compute_color(raycaster.ray,hitObj,0));
+        c.set(compute_color(raycaster.ray.direction,hitObj,0));
         // c.r/=MAXLEVEL;
         // c.g/=MAXLEVEL;
         // c.b/=MAXLEVEL;
@@ -316,13 +309,18 @@ function spawn_raytracer(x,y){
 
 function compute_color(ray,object,level){
 
-    var origin = object.point;
+    var origin = new THREE.Vector3();
+    origin.copy(object.point);
     var face = object.face;
     if(face != null) {
-
-        var quartenion = object.object.quaternion;
-        var facenormal = face.normal.applyQuaternion(quartenion);
-        var vertexnormal = face.vertexNormals;
+        var rotation = object.object.rotation;
+        // rotation.extractRotation(matrix);
+        var facenormal = new THREE.Vector3();
+        facenormal.copy(face.normal).applyEuler(rotation);
+        // var quartenion = object.object.quaternion;
+        // var facenormal = new THREE.Vector3();
+        // facenormal.copy(face.normal).applyQuaternion(quartenion);
+        // var vertexnormal = face.vertexNormals;
 
         var curr_color = new THREE.Color();
         //TODO compute color according to ADS idea...
@@ -331,8 +329,8 @@ function compute_color(ray,object,level){
 
         var reflect = new THREE.Vector3();
         reflect.copy(ray);
-        reflect.reflect(facenormal.normalize()).normalize();
-        (curr_color.add(raytrace_color(origin, reflect, level + 1)))
+        reflect.reflect(facenormal).normalize();
+        (curr_color.add(raytrace_color(origin, reflect, level + 1)));
         return curr_color;
 
 
@@ -361,7 +359,7 @@ function ads_shading(object){
 
 
 function raytrace_color(origin, direction, level){
-    if(level >= MAXLEVEL){return;}
+    if(level >= MAXLEVEL){return new THREE.Color(0.0,0.0,0.0);}
     var raycaster = new THREE.Raycaster();
     raycaster.set(origin,direction);
 
@@ -371,15 +369,15 @@ function raytrace_color(origin, direction, level){
     // console.log(raycaster.ray.origin.x+";"+raycaster.ray.origin.y+":"+raycaster.ray.origin.z);
 
     if(intersections.length>0){
-        var obj = intersections[0];
+        var hitObj = intersections[0];
         // console.log(obj);
         if(debug) {
-            console.log("Intersection : " + obj.object.position.x);
-            console.log("Intersection : " + obj.object.position.y);
-            console.log("Intersection : " + obj.object.position.z);
+            console.log("Intersection : " + hitObj.object.position.x);
+            console.log("Intersection : " + hitObj.object.position.y);
+            console.log("Intersection : " + hitObj.object.position.z);
         }
         console.log("bounce!");
-        return compute_color(raycaster.ray.direction,obj, level);
+        return compute_color(raycaster.ray.direction,hitObj, level);
     }
 
     //if no intersection we return 0..

@@ -55,6 +55,7 @@ function raytrace_click(event) {
  * @param origin
  * @param end
  * @param color
+ * @param force (optional) for debugging purpose
  */
 function addAsLine(origin, end,color, force){
     if(debug || force) {
@@ -99,7 +100,8 @@ function compute_rebound(ray, object, level){
         // var rotation = new THREE.Matrix4();
         var rotation = object.object.rotation;
         // rotation.extractRotation(matrix);
-        var facenormal = face.normal.applyEuler(rotation);
+        var facenormal = new THREE.Vector3();
+        facenormal.copy(face.normal).applyEuler(rotation);
         // var quartenion = object.object.quaternion;
         // var facenormal = face.normal.applyQuaternion(quartenion);
         // var vertexnormal = face.vertexNormals;
@@ -112,15 +114,18 @@ function compute_rebound(ray, object, level){
         var reflect = new THREE.Vector3();
         reflect.copy(ray);
         reflect.reflect(facenormal.normalize()).normalize();
+
+        var reflectThousand = new THREE.Vector3(
+            reflect.x * 1000,
+            reflect.y * 1000,
+            reflect.z * 1000);
+        addAsLine(origin, reflectThousand, 0xffff00,true);
+        var norm = new THREE.Vector3(facenormal.x * 10 + origin.x, facenormal.y * 10 + origin.y, facenormal.z * 10 + origin.z);
+        addAsLine(origin, norm, 0x000000,true);
+
         raytrace(origin,reflect, level+1);
 
-            var reflectThousand = new THREE.Vector3(
-                reflect.x * 1000,
-                reflect.y * 1000,
-                reflect.z * 1000);
-            addAsLine(origin, reflectThousand, 0xffff00,true);
-            var norm = new THREE.Vector3(facenormal.x * 10 + origin.x, facenormal.y * 10 + origin.y, facenormal.z * 10 + origin.z);
-            addAsLine(origin, norm, 0x000000,true);
+
 
 
     }
