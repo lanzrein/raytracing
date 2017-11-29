@@ -1,4 +1,4 @@
-var MAXLEVEL = 3.0;
+var MAXLEVEL = 2.0;
 
 var debug = false;
 var WIDTH = 400.0;
@@ -9,6 +9,7 @@ var camera;
 //for threejs
 var dummy;
 var scene;
+var renderer;
 
 
 //translate keypress events to strings
@@ -177,18 +178,20 @@ function setup_objects(scene) {
 function start() {
     window.onclick = raytrace_click;
     window.onkeypress = handleKeyPress;
+    setupScene();
     setupFirstCanvas();
 
     setupRayCanvas();
 
 
 
-}
 
-function setupFirstCanvas(){
+
+}
+function setupScene(){
     scene = new THREE.Scene();
     var ourCanvas = document.getElementById('theCanvas');
-    var renderer = new THREE.WebGLRenderer({canvas: ourCanvas});
+    renderer = new THREE.WebGLRenderer({canvas: ourCanvas});
     renderer.setClearColor(0xf0f0f0);
 
     //do all the stuff.
@@ -198,13 +201,16 @@ function setupFirstCanvas(){
     setupLights(scene);
     setupBackGround(scene);
     setup_objects(scene);
+}
+function setupFirstCanvas(){
 
-    // function render(){
-    //     renderer.render(scene,camera);
-    //     requestAnimationFrame(render);
-    // }
-    // render();
-    renderer.render(scene,camera);
+
+    function render(){
+        renderer.render(scene,camera);
+        requestAnimationFrame(render);
+    }
+    render();
+    // renderer.render(scene,camera);
 
 }
 function setupRayCanvas(){
@@ -221,7 +227,7 @@ function setupRayCanvas(){
         for(var x = 0; x < WIDTH;x++){
             var perc = (x*HEIGHT+y)/(WIDTH*HEIGHT)*100.0;
             perc = Math.floor(perc);
-            if(perc % 10 === 0) {
+            if(perc % 10 === 0 && debug) {
                 console.log("Percentage :" + perc);
             }
 
@@ -252,7 +258,7 @@ function setupRayCanvas(){
  * @param y y coord in NFC
  * @returns {H} the color.
  */
-var raycaster = new THREE.Raycaster();
+// var raycaster = new THREE.Raycaster();
 
 /**
  * Start of the recursive loop for every pixel.
@@ -263,11 +269,14 @@ var raycaster = new THREE.Raycaster();
  */
 function spawn_raytracer(x,y){
     //convert to nfc
+    if(y === 177 && x === 178){
+        console.log("debugging in js sucks");
+    }
     var xNFC = x / WIDTH*2 - 1;
     var yNFC = -(y / HEIGHT)*2 + 1;
     //make a vector.
     var vec = new THREE.Vector2(xNFC, yNFC);
-
+    var raycaster = new THREE.Raycaster();
     raycaster.setFromCamera(vec, camera);
     // console.log(raycaster.ray.direction);
     var intersections = raycaster.intersectObjects(scene.children,true);
@@ -289,9 +298,9 @@ function spawn_raytracer(x,y){
         //since its the first hit object this is where the computation starts.
         var c = new THREE.Color();
         c.set(compute_color(raycaster.ray,hitObj,0));
-        c.r/=MAXLEVEL;
-        c.g/=MAXLEVEL;
-        c.b/=MAXLEVEL;
+        // c.r/=MAXLEVEL;
+        // c.g/=MAXLEVEL;
+        // c.b/=MAXLEVEL;
         return c;
         // return hitObj.object.material.color;
     }else{
@@ -323,8 +332,8 @@ function compute_color(ray,object,level){
         var reflect = new THREE.Vector3();
         reflect.copy(ray);
         reflect.reflect(facenormal.normalize()).normalize();
-
-        return (curr_color + (raytrace_color(origin, reflect, level + 1)));
+        (curr_color.add(raytrace_color(origin, reflect, level + 1)))
+        return curr_color;
 
 
 
@@ -340,6 +349,9 @@ function compute_color(ray,object,level){
 function ads_shading(object){
 //recall the phong model of lighting...
     //TODO ask teacher how to do it..???
+    //Object has many usefull property :
+    //https://threejs.org/docs/#api/core/Raycaster
+    //intersect object..
     // color.set(object.object.material.color);
     return object.object.material.color;
 
@@ -366,6 +378,7 @@ function raytrace_color(origin, direction, level){
             console.log("Intersection : " + obj.object.position.y);
             console.log("Intersection : " + obj.object.position.z);
         }
+        console.log("bounce!");
         return compute_color(raycaster.ray.direction,obj, level);
     }
 

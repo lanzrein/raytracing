@@ -32,8 +32,8 @@
       <file leaf-file-name="Raytracing.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Raytracing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="568">
-              <caret line="296" column="10" lean-forward="true" selection-start-line="296" selection-start-column="10" selection-end-line="296" selection-end-column="10" />
+            <state relative-caret-position="504">
+              <caret line="184" column="0" lean-forward="true" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
               <folding>
                 <element signature="n#!!block;n#getChar#0" expanded="false" />
                 <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
@@ -42,12 +42,13 @@
                 <element signature="n#!!block;n#setupLights#0" expanded="false" />
                 <element signature="n#!!block;n#add_axis#0" expanded="false" />
                 <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-                <element signature="e#2744#2950#0" expanded="false" />
+                <element signature="e#2758#2964#0" expanded="false" />
                 <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
                 <element signature="n#!!block;n#setup_objects#0" expanded="false" />
-                <element signature="n#!!block;n#start#0" expanded="false" />
-                <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-                <element signature="e#7384#7666#0" expanded="false" />
+                <element signature="n#!!block;n#setupScene#0" expanded="false" />
+                <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+                <element signature="e#7565#7847#0" expanded="false" />
+                <element signature="n#!!block;n#ads_shading#0" expanded="false" />
                 <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
                 <element signature="n#!!block;n#coeff_level#0" expanded="false" />
               </folding>
@@ -58,12 +59,10 @@
       <file leaf-file-name="raytracing_debug.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/raytracing_debug.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="806">
-              <caret line="178" column="0" lean-forward="true" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
+            <state relative-caret-position="1722">
+              <caret line="103" column="49" lean-forward="true" selection-start-line="103" selection-start-column="49" selection-end-line="103" selection-end-column="49" />
               <folding>
-                <element signature="n#!!block;n#compute_rebound#0" expanded="false" />
                 <element signature="n#!!doc;n#raytrace#0" expanded="false" />
-                <element signature="n#!!block;n#raytrace#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -82,8 +81,8 @@
       <file leaf-file-name="three.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/three.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6846">
-              <caret line="326" column="13" lean-forward="false" selection-start-line="326" selection-start-column="13" selection-end-line="326" selection-end-column="13" />
+            <state relative-caret-position="279">
+              <caret line="5552" column="12" lean-forward="false" selection-start-line="5552" selection-start-column="12" selection-end-line="5552" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -104,8 +103,10 @@
       <find>MAXLEVEL</find>
       <find>600</find>
       <find>sphere</find>
-      <find>console</find>
       <find>maxleve</find>
+      <find>console</find>
+      <find>raycaster</find>
+      <find>maxlevel</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -207,18 +208,18 @@
       <workItem from="1511825327093" duration="4880000" />
       <workItem from="1511883268708" duration="2381000" />
       <workItem from="1511889123661" duration="8265000" />
-      <workItem from="1511918993680" duration="954000" />
+      <workItem from="1511918993680" duration="3491000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45799000" />
+    <option name="totallyTimeSpent" value="48336000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="952" y="0" width="976" height="1038" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34133613" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34133613" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -242,16 +243,16 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.50104386" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34133613" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,12 +280,13 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2744#2950#0" expanded="false" />
+            <element signature="e#2758#2964#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
-            <element signature="n#!!block;n#start#0" expanded="false" />
-            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#7384#7666#0" expanded="false" />
+            <element signature="n#!!block;n#setupScene#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="e#7565#7847#0" expanded="false" />
+            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -321,12 +323,13 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2744#2950#0" expanded="false" />
+            <element signature="e#2758#2964#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
-            <element signature="n#!!block;n#start#0" expanded="false" />
-            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#7384#7666#0" expanded="false" />
+            <element signature="n#!!block;n#setupScene#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="e#7565#7847#0" expanded="false" />
+            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -355,12 +358,13 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2744#2950#0" expanded="false" />
+            <element signature="e#2758#2964#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
-            <element signature="n#!!block;n#start#0" expanded="false" />
-            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#7384#7666#0" expanded="false" />
+            <element signature="n#!!block;n#setupScene#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="e#7565#7847#0" expanded="false" />
+            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -397,12 +401,13 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2744#2950#0" expanded="false" />
+            <element signature="e#2758#2964#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
-            <element signature="n#!!block;n#start#0" expanded="false" />
-            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#7384#7666#0" expanded="false" />
+            <element signature="n#!!block;n#setupScene#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="e#7565#7847#0" expanded="false" />
+            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -447,12 +452,13 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2744#2950#0" expanded="false" />
+            <element signature="e#2758#2964#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
-            <element signature="n#!!block;n#start#0" expanded="false" />
-            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#7384#7666#0" expanded="false" />
+            <element signature="n#!!block;n#setupScene#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="e#7565#7847#0" expanded="false" />
+            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -489,12 +495,13 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2744#2950#0" expanded="false" />
+            <element signature="e#2758#2964#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
-            <element signature="n#!!block;n#start#0" expanded="false" />
-            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#7384#7666#0" expanded="false" />
+            <element signature="n#!!block;n#setupScene#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="e#7565#7847#0" expanded="false" />
+            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -531,12 +538,13 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2744#2950#0" expanded="false" />
+            <element signature="e#2758#2964#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
-            <element signature="n#!!block;n#start#0" expanded="false" />
-            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#7384#7666#0" expanded="false" />
+            <element signature="n#!!block;n#setupScene#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="e#7565#7847#0" expanded="false" />
+            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -573,12 +581,13 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2744#2950#0" expanded="false" />
+            <element signature="e#2758#2964#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
-            <element signature="n#!!block;n#start#0" expanded="false" />
-            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#7384#7666#0" expanded="false" />
+            <element signature="n#!!block;n#setupScene#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="e#7565#7847#0" expanded="false" />
+            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -615,12 +624,13 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2744#2950#0" expanded="false" />
+            <element signature="e#2758#2964#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
-            <element signature="n#!!block;n#start#0" expanded="false" />
-            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#7384#7666#0" expanded="false" />
+            <element signature="n#!!block;n#setupScene#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="e#7565#7847#0" expanded="false" />
+            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -657,12 +667,13 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2744#2950#0" expanded="false" />
+            <element signature="e#2758#2964#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
-            <element signature="n#!!block;n#start#0" expanded="false" />
-            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#7384#7666#0" expanded="false" />
+            <element signature="n#!!block;n#setupScene#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="e#7565#7847#0" expanded="false" />
+            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -699,12 +710,13 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2744#2950#0" expanded="false" />
+            <element signature="e#2758#2964#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
-            <element signature="n#!!block;n#start#0" expanded="false" />
-            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#7384#7666#0" expanded="false" />
+            <element signature="n#!!block;n#setupScene#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="e#7565#7847#0" expanded="false" />
+            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -733,12 +745,13 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2744#2950#0" expanded="false" />
+            <element signature="e#2758#2964#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
-            <element signature="n#!!block;n#start#0" expanded="false" />
-            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#7384#7666#0" expanded="false" />
+            <element signature="n#!!block;n#setupScene#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="e#7565#7847#0" expanded="false" />
+            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -775,12 +788,13 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2744#2950#0" expanded="false" />
+            <element signature="e#2758#2964#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
-            <element signature="n#!!block;n#start#0" expanded="false" />
-            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#7384#7666#0" expanded="false" />
+            <element signature="n#!!block;n#setupScene#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="e#7565#7847#0" expanded="false" />
+            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -817,12 +831,13 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2744#2950#0" expanded="false" />
+            <element signature="e#2758#2964#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
-            <element signature="n#!!block;n#start#0" expanded="false" />
-            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#7384#7666#0" expanded="false" />
+            <element signature="n#!!block;n#setupScene#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="e#7565#7847#0" expanded="false" />
+            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -859,12 +874,13 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2744#2950#0" expanded="false" />
+            <element signature="e#2758#2964#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
-            <element signature="n#!!block;n#start#0" expanded="false" />
-            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#7384#7666#0" expanded="false" />
+            <element signature="n#!!block;n#setupScene#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="e#7565#7847#0" expanded="false" />
+            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>
@@ -894,14 +910,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/three.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6846">
-          <caret line="326" column="13" lean-forward="false" selection-start-line="326" selection-start-column="13" selection-end-line="326" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -920,22 +928,28 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/raytracing_debug.js" />
+    <entry file="file://$PROJECT_DIR$/three.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="5552" column="12" lean-forward="false" selection-start-line="5552" selection-start-column="12" selection-end-line="5552" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/raytracing_debug.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="806">
-          <caret line="178" column="0" lean-forward="true" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
+        <state relative-caret-position="1722">
+          <caret line="103" column="49" lean-forward="true" selection-start-line="103" selection-start-column="49" selection-end-line="103" selection-end-column="49" />
           <folding>
-            <element signature="n#!!block;n#compute_rebound#0" expanded="false" />
             <element signature="n#!!doc;n#raytrace#0" expanded="false" />
-            <element signature="n#!!block;n#raytrace#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Raytracing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="296" column="10" lean-forward="true" selection-start-line="296" selection-start-column="10" selection-end-line="296" selection-end-column="10" />
+        <state relative-caret-position="504">
+          <caret line="184" column="0" lean-forward="true" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#getChar#0" expanded="false" />
             <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
@@ -944,12 +958,13 @@
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
             <element signature="n#!!block;n#add_axis#0" expanded="false" />
             <element signature="n#!!block;n#add_origin_cube#0" expanded="false" />
-            <element signature="e#2744#2950#0" expanded="false" />
+            <element signature="e#2758#2964#0" expanded="false" />
             <element signature="n#!!block;n#setupBackGround#0" expanded="false" />
             <element signature="n#!!block;n#setup_objects#0" expanded="false" />
-            <element signature="n#!!block;n#start#0" expanded="false" />
-            <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#7384#7666#0" expanded="false" />
+            <element signature="n#!!block;n#setupScene#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="e#7565#7847#0" expanded="false" />
+            <element signature="n#!!block;n#ads_shading#0" expanded="false" />
             <element signature="n#!!doc;n#coeff_level#0" expanded="false" />
             <element signature="n#!!block;n#coeff_level#0" expanded="false" />
           </folding>

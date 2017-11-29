@@ -16,7 +16,7 @@ function raytrace_click(event) {
     //then make a ray from camera but convert it in clip coordinate...
     //
     var vec = new THREE.Vector2(x, y);
-
+    var raycaster = new THREE.Raycaster();
     raycaster.setFromCamera(vec, camera);
     // console.log(raycaster.ray.direction);
     var intersections = raycaster.intersectObjects(scene.children,true);
@@ -28,7 +28,7 @@ function raytrace_click(event) {
     direction.z*=1000;
 
 
-    addAsLine(raycaster.ray.origin,direction,0xff00ff);
+    addAsLine(raycaster.ray.origin,direction,0xff00ff,true);
     if(intersections.length > 0){
         var obj = intersections[0];
         // console.log(obj);
@@ -56,8 +56,8 @@ function raytrace_click(event) {
  * @param end
  * @param color
  */
-function addAsLine(origin, end,color){
-    if(debug) {
+function addAsLine(origin, end,color, force){
+    if(debug || force) {
         var material = new THREE.LineBasicMaterial({color: color});
         var geometry = new THREE.Geometry();
         geometry.vertices.push(
@@ -94,28 +94,34 @@ function compute_rebound(ray, object, level){
     if(face != null) {
 
 
-        var matrix = object.object.matrixWorld;
+        var matrix = object.object.normalMatrix;
         // var matrix = object.object.modelViewMatrix;
         // var rotation = new THREE.Matrix4();
+        var rotation = object.object.rotation;
         // rotation.extractRotation(matrix);
-        // var facenormal = face.normal.applyMatrix4(rotation);
-        var quartenion = object.object.quaternion;
-        var facenormal = face.normal.applyQuaternion(quartenion);
-        var vertexnormal = face.vertexNormals;
+        var facenormal = face.normal.applyEuler(rotation);
+        // var quartenion = object.object.quaternion;
+        // var facenormal = face.normal.applyQuaternion(quartenion);
+        // var vertexnormal = face.vertexNormals;
+        // var normal = new THREE.Vector3();
+        // for(var i = 0; i < vertexnormal.length; i++){
+        //     normal.add(vertexnormal[i]);
+        // }
+        //     normal.divide(3.0);
 
         var reflect = new THREE.Vector3();
         reflect.copy(ray);
         reflect.reflect(facenormal.normalize()).normalize();
         raytrace(origin,reflect, level+1);
-        if(debug) {
+
             var reflectThousand = new THREE.Vector3(
                 reflect.x * 1000,
                 reflect.y * 1000,
                 reflect.z * 1000);
-            addAsLine(origin, reflectThousand, 0xffff00);
+            addAsLine(origin, reflectThousand, 0xffff00,true);
             var norm = new THREE.Vector3(facenormal.x * 10 + origin.x, facenormal.y * 10 + origin.y, facenormal.z * 10 + origin.z);
-            addAsLine(origin, norm, 0x000000);
-        }
+            addAsLine(origin, norm, 0x000000,true);
+
 
     }
 
