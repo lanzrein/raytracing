@@ -1,4 +1,4 @@
-var MAXLEVEL = 3;
+var MAXLEVEL = 3.0;
 
 var debug = false;
 var WIDTH = 400.0;
@@ -225,12 +225,9 @@ function setupRayCanvas(){
                 console.log("Percentage :" + perc);
             }
 
-            //we need to compute it in NFC
-            var xNFC = x / WIDTH*2 - 1;
-            var yNFC = -(y / HEIGHT)*2 + 1;
             //TODO in here we need to do our little computation for every pixel :)
             var c = new THREE.Color();
-            c.set(spawn_raytracer(xNFC,yNFC));
+            c.set(spawn_raytracer(x,y));
 
             data[idx] = c.r*255;//r
             data[idx+1] = c.g*255;//g
@@ -245,126 +242,8 @@ function setupRayCanvas(){
 }
 
 
-/**
- * Compute the rebound and what to do with it.
- * We pass the ray and the object that it touched.
- * take care when handling the ray you might want to use ray.direction.
- * @param ray
- * @param object
- * @param level of recursion
- */
-function compute_rebound(ray, object, level){
-    //objct has point of intersection in world coord,
-    //face intersected
-    //uv coord at point of intersection.
-
-    //we need to apply the model view matrix to the facenormal..
-    var origin = object.point;
-    var face = object.face;
-    console.log("At level "+level+", " +object);
-    if(face != null) {
-        //TODO Why does it not apply the color. ????
-        face.color = new THREE.Color(0.0,0.0,0.0);
-        var matrix = object.object.matrixWorld;
-        // var matrix = object.object.modelViewMatrix;
-        // var rotation = new THREE.Matrix4();
-        // rotation.extractRotation(matrix);
-        // var facenormal = face.normal.applyMatrix4(rotation);
-        var quartenion = object.object.quaternion;
-        var facenormal = face.normal.applyQuaternion(quartenion);
-        var vertexnormal = face.vertexNormals;
-        console.log("Test");
-
-        var reflect = new THREE.Vector3();
-        reflect.copy(ray);
-        reflect.reflect(facenormal.normalize()).normalize();
-        raytrace(origin,reflect, level+1);
-        var reflectThousand = new THREE.Vector3(
-        reflect.x * 1000,
-        reflect.y * 1000,
-        reflect.z * 1000);
-        addAsLine(origin, reflectThousand, 0xffff00);
-        var norm = new THREE.Vector3(facenormal.x*10+origin.x,facenormal.y*10+origin.y,facenormal.z*10+origin.z);
-        addAsLine(origin,norm,0x000000);
-        //So we need to work with ray.reflect on the face normal. It might look weird on the testing.
-        //but it seems okay.
-        //now we need to recurse on this ray a set level (say 3 to start with)
-        /*
-        idea of algorithm (not sure)
-        raytracing(scene, camera, level):
-        for every pixel :
-            do the ray tracing. if there is no intersection. leave it as is.
-            if there is and intersection :
-                compute the lighting ads,
-                reflect the vector and
-                    if(level >= MAXLEVEL){stop}else
-                        raytracing(scene,camera,level+1)
-
-
-
-
-
-         moreover we need to find a factor or constant for the level of recursion
-         because the deeper it is. the less it will have an impact.
-
-
-
-
-         */
-    }
-
-}
-
-/**
- * Do the ray tracing work with a basic given line.
- *
- * @param origin
- * @param direction
- * @param level the level of recursion.
- */
-function raytrace(origin, dir, level){
-    if(level >= MAXLEVEL){return;}
-    var raycaster = new THREE.Raycaster();
-    raycaster.set(origin,dir);
-
-    var intersections = raycaster.intersectObjects(scene.children,true);
-    //we only want the first intersect..
-
-    console.log(raycaster.ray.origin.x+";"+raycaster.ray.origin.y+":"+raycaster.ray.origin.z);
-
-    for(var i = 0; i < intersections.length; i++){
-        var obj = intersections[i];
-        // console.log(obj);
-        console.log("Intersection : " +obj.object.position.x);
-        console.log("Intersection : " +obj.object.position.y);
-        console.log("Intersection : " +obj.object.position.z);
-
-        compute_rebound(raycaster.ray.direction,obj, level)
-    }
-
-}
-
-
-
-
-/**********************************************************************
- *
- *
- * FOLLOWING IS THE ACTUAL CODE (TENTATIVE) FOR THE PROJECT!
- * idea :
- * foreach pixel(x,y):
- *      spawn_raytracer(x,y)
- * .....
- *
- *
- *
- *
- *
- *
- **********************************************************************/
 //first hit is where we spawn the ray - and the first intersection is where we need to decide the
 //color
-var raycaster = new THREE.Raycaster();
 
 /**
  * Spawn a ray tracer from the given coordinare.
@@ -373,9 +252,21 @@ var raycaster = new THREE.Raycaster();
  * @param y y coord in NFC
  * @returns {H} the color.
  */
+var raycaster = new THREE.Raycaster();
+
+/**
+ * Start of the recursive loop for every pixel.
+ * We start with index x , y and spawn a raytracer.
+ * @param x x coordinate
+ * @param y y coordinate.
+ * @returns {H} the color of the pixel it hit.
+ */
 function spawn_raytracer(x,y){
+    //convert to nfc
+    var xNFC = x / WIDTH*2 - 1;
+    var yNFC = -(y / HEIGHT)*2 + 1;
     //make a vector.
-    var vec = new THREE.Vector2(x, y);
+    var vec = new THREE.Vector2(xNFC, yNFC);
 
     raycaster.setFromCamera(vec, camera);
     // console.log(raycaster.ray.direction);
@@ -395,7 +286,14 @@ function spawn_raytracer(x,y){
     if(intersections.length>0){
         var hitObj = intersections[0];
         //TODO here instead of returning the color we need to do the ADS Computation.
-        return hitObj.object.material.color;
+        //since its the first hit object this is where the computation starts.
+        var c = new THREE.Color();
+        c.set(compute_color(raycaster.ray,hitObj,0));
+        c.r/=MAXLEVEL;
+        c.g/=MAXLEVEL;
+        c.b/=MAXLEVEL;
+        return c;
+        // return hitObj.object.material.color;
     }else{
         //no hit so we return the ambiant color..
 
@@ -407,28 +305,26 @@ function spawn_raytracer(x,y){
 
 }
 
-function compute_color(direction,object,level){
+function compute_color(ray,object,level){
 
     var origin = object.point;
     var face = object.face;
-    console.log("At level "+level+", " +object);
     if(face != null) {
-        var matrix = object.object.matrixWorld;
 
         var quartenion = object.object.quaternion;
         var facenormal = face.normal.applyQuaternion(quartenion);
         var vertexnormal = face.vertexNormals;
-        console.log("Test");
 
         var curr_color = new THREE.Color();
         //TODO compute color according to ADS idea...
-        ads_shading(object, curr_color);
+        curr_color.set(ads_shading(object));
 
 
         var reflect = new THREE.Vector3();
         reflect.copy(ray);
         reflect.reflect(facenormal.normalize()).normalize();
-        return curr_color + (raytrace_color(origin, reflect, level + 1))*coeff_level(level);
+
+        return (curr_color + (raytrace_color(origin, reflect, level + 1)));
 
 
 
@@ -440,12 +336,12 @@ function compute_color(direction,object,level){
  * TODO
  * compute the color
  * @param object
- * @param color
  */
-function ads_shading(object,color){
+function ads_shading(object){
 //recall the phong model of lighting...
     //TODO ask teacher how to do it..???
-
+    // color.set(object.object.material.color);
+    return object.object.material.color;
 
 }
 
@@ -460,21 +356,22 @@ function raytrace_color(origin, direction, level){
     var intersections = raycaster.intersectObjects(scene.children,true);
     //we only want the first intersect..
 
-    console.log(raycaster.ray.origin.x+";"+raycaster.ray.origin.y+":"+raycaster.ray.origin.z);
+    // console.log(raycaster.ray.origin.x+";"+raycaster.ray.origin.y+":"+raycaster.ray.origin.z);
 
     if(intersections.length>0){
         var obj = intersections[0];
         // console.log(obj);
-        console.log("Intersection : " +obj.object.position.x);
-        console.log("Intersection : " +obj.object.position.y);
-        console.log("Intersection : " +obj.object.position.z);
-
+        if(debug) {
+            console.log("Intersection : " + obj.object.position.x);
+            console.log("Intersection : " + obj.object.position.y);
+            console.log("Intersection : " + obj.object.position.z);
+        }
         return compute_color(raycaster.ray.direction,obj, level);
     }
 
     //if no intersection we return 0..
     //maybe return 1 or whatever the background is...
-    return 0.0;
+    return new THREE.Color(0.0,0.0,0.0);
 
 }
 

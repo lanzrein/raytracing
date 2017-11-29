@@ -70,3 +70,109 @@ function addAsLine(origin, end,color){
     }
 
 }
+
+
+
+
+/**
+ * Compute the rebound and what to do with it.
+ * We pass the ray and the object that it touched.
+ * take care when handling the ray you might want to use ray.direction.
+ * @param ray
+ * @param object
+ * @param level of recursion
+ */
+function compute_rebound(ray, object, level){
+    //objct has point of intersection in world coord,
+    //face intersected
+    //uv coord at point of intersection.
+
+    //we need to apply the model view matrix to the facenormal..
+    var origin = object.point;
+    var face = object.face;
+    // console.log("At level "+level+", " +object);
+    if(face != null) {
+
+
+        var matrix = object.object.matrixWorld;
+        // var matrix = object.object.modelViewMatrix;
+        // var rotation = new THREE.Matrix4();
+        // rotation.extractRotation(matrix);
+        // var facenormal = face.normal.applyMatrix4(rotation);
+        var quartenion = object.object.quaternion;
+        var facenormal = face.normal.applyQuaternion(quartenion);
+        var vertexnormal = face.vertexNormals;
+
+        var reflect = new THREE.Vector3();
+        reflect.copy(ray);
+        reflect.reflect(facenormal.normalize()).normalize();
+        raytrace(origin,reflect, level+1);
+        if(debug) {
+            var reflectThousand = new THREE.Vector3(
+                reflect.x * 1000,
+                reflect.y * 1000,
+                reflect.z * 1000);
+            addAsLine(origin, reflectThousand, 0xffff00);
+            var norm = new THREE.Vector3(facenormal.x * 10 + origin.x, facenormal.y * 10 + origin.y, facenormal.z * 10 + origin.z);
+            addAsLine(origin, norm, 0x000000);
+        }
+
+    }
+
+}
+
+
+//So we need to work with ray.reflect on the face normal. It might look weird on the testing.
+//but it seems okay.
+//now we need to recurse on this ray a set level (say 3 to start with)
+/*
+idea of algorithm (not sure)
+raytracing(scene, camera, level):
+for every pixel :
+    do the ray tracing. if there is no intersection. leave it as is.
+    if there is and intersection :
+        compute the lighting ads,
+        reflect the vector and
+            if(level >= MAXLEVEL){stop}else
+                raytracing(scene,camera,level+1)
+
+
+
+
+
+ moreover we need to find a factor or constant for the level of recursion
+ because the deeper it is. the less it will have an impact.
+
+
+
+
+ */
+
+/**
+ * Do the ray tracing work with a basic given line.
+ *
+ * @param origin
+ * @param direction
+ * @param level the level of recursion.
+ */
+function raytrace(origin, dir, level){
+    if(level >= MAXLEVEL){return;}
+    var raycaster = new THREE.Raycaster();
+    raycaster.set(origin,dir);
+
+    var intersections = raycaster.intersectObjects(scene.children,true);
+    //we only want the first intersect..
+
+    console.log(raycaster.ray.origin.x+";"+raycaster.ray.origin.y+":"+raycaster.ray.origin.z);
+
+    for(var i = 0; i < intersections.length; i++){
+        var obj = intersections[i];
+        // console.log(obj);
+        console.log("Intersection : " +obj.object.position.x);
+        console.log("Intersection : " +obj.object.position.y);
+        console.log("Intersection : " +obj.object.position.z);
+
+        compute_rebound(raycaster.ray.direction,obj, level)
+    }
+
+}
