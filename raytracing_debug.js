@@ -96,20 +96,11 @@ function compute_rebound(ray, object, level){
 
 
         var matrix = object.object.normalMatrix;
-        // var matrix = object.object.modelViewMatrix;
-        // var rotation = new THREE.Matrix4();
+
         var rotation = object.object.rotation;
-        // rotation.extractRotation(matrix);
         var facenormal = new THREE.Vector3();
         facenormal.copy(face.normal).applyEuler(rotation);
-        // var quartenion = object.object.quaternion;
-        // var facenormal = face.normal.applyQuaternion(quartenion);
-        // var vertexnormal = face.vertexNormals;
-        // var normal = new THREE.Vector3();
-        // for(var i = 0; i < vertexnormal.length; i++){
-        //     normal.add(vertexnormal[i]);
-        // }
-        //     normal.divide(3.0);
+
 
         var reflect = new THREE.Vector3();
         reflect.copy(ray);
@@ -133,9 +124,6 @@ function compute_rebound(ray, object, level){
 }
 
 
-//So we need to work with ray.reflect on the face normal. It might look weird on the testing.
-//but it seems okay.
-//now we need to recurse on this ray a set level (say 3 to start with)
 /*
 idea of algorithm (not sure)
 raytracing(scene, camera, level):
@@ -186,4 +174,50 @@ function raytrace(origin, dir, level){
         compute_rebound(raycaster.ray.direction,obj, level)
     }
 
+}
+
+
+
+//taken from http://web.cs.iastate.edu/~smkautz/cs336f17/examples/threejs_examples/RotatingCubeWithCamera.html
+function add_axis(scene) {
+    // Make some axes
+    var material = new THREE.LineBasicMaterial({color: 0xff0000});
+    var geometry = new THREE.Geometry();
+    geometry.vertices.push(
+        new THREE.Vector3(0, 0, 0),
+        new THREE.Vector3(20, 0, 0)
+    );
+    var line = new THREE.Line(geometry, material);
+    scene.add(line);
+
+    material = new THREE.LineBasicMaterial({color: 0x00ff00});
+    geometry = new THREE.Geometry();
+    geometry.vertices.push(
+        new THREE.Vector3(0, 0, 0),
+        new THREE.Vector3(0, 20, 0)
+    );
+    line = new THREE.Line(geometry, material);
+    scene.add(line);
+
+    material = new THREE.LineBasicMaterial({color: 0x0000ff});
+    geometry = new THREE.Geometry();
+    geometry.vertices.push(
+        new THREE.Vector3(0, 0, 0),
+        new THREE.Vector3(0, 0, 20)
+    );
+    line = new THREE.Line(geometry, material);
+    scene.add(line);
+
+    //add a small ball so we can see where it is.
+
+}
+
+
+function add_origin_cube(scene) {
+    var cube = new THREE.CubeGeometry(1, 1, 1);
+    var materialWhite = new THREE.MeshPhongMaterial({color: 0x000000, specular: 0, shininess: 0})
+
+    var obj = new THREE.Mesh(cube, materialWhite);
+    obj.position.set(0, 0, 0);
+    scene.add(obj);
 }
