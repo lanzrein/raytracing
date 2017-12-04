@@ -1,4 +1,4 @@
-var MAXLEVEL = 2.0;
+var MAXLEVEL = 4.0;
 
 var debug = false;
 var WIDTH = 400.0;
@@ -88,7 +88,7 @@ var nz;//blue
 function setupBackGround(scene) {
     //everything will be in our 5x5 box
     var plane = new THREE.PlaneGeometry(10, 10);
-    var materialRed = new THREE.MeshPhongMaterial({color: 0xff0000, specular: 0x440000, shininess: 50, vertexColors: THREE.FaceColors});
+    var materialRed = new THREE.MeshPhongMaterial({color: 0x000000, specular: 0x000000, shininess: 10000, vertexColors: THREE.NoColors});
 
     ny = new THREE.Mesh(plane, materialRed);
     ny.position.set(0, -5, 0);
@@ -121,14 +121,14 @@ function setupBackGround(scene) {
  * @param scene
  */
 function setup_objects(scene) {
-    var sphere = new THREE.SphereGeometry(1, 32, 48);
-    var materialWhite = new THREE.MeshPhongMaterial({color: 0xffffff, specular: 0x111111, shininess: 40,vertexColors: THREE.FaceColors, reflectivity:1});
+    var sphere = new THREE.SphereGeometry(1, 120, 120);
+    var materialWhite = new THREE.MeshPhongMaterial({color: 0xffffff, specular: 0x000011, shininess: 4,vertexColors: THREE.FaceColors, reflectivity:1});
 
     var obj = new THREE.Mesh(sphere, materialWhite);
     obj.position.set(0, -4, 0);
     dummy.add(obj);
 
-    var materialYellow = new THREE.MeshPhongMaterial({color: 0xffff00, specular: 0x222200, shininess: 40,vertexColors: THREE.FaceColors, reflectivity:0.5});
+    var materialYellow = new THREE.MeshPhongMaterial({color: 0xffff00, specular: 0x001111, shininess: 40,vertexColors: THREE.FaceColors, reflectivity:0.1});
 
     obj = new THREE.Mesh(sphere, materialYellow);
     obj.position.set(-2,-4, 0);
@@ -296,6 +296,85 @@ function compute_color(ray,object,level){
 
 }
 
+function compute_ads(object, facenormal, reflect, hitpoint) {
+    //return object.object.material.color;
+
+    var view = camera.position.sub(object.point);
+    var V = new THREE.Vector3(view.x, view.y, view.z).normalize();
+    var N = facenormal.normalize();
+    var R = reflect;
+    var t = object.object.material.shininess;
+    var L = new THREE.Vector3();
+    var ambientLightColor;
+
+    // var pointSum = new THREE.Vector3(0, 0, 0);
+    // var pointTotal = 0;
+    //
+    // var ambientColors = new THREE.Vector3(0, 0, 0);
+    // var ambientTotal = 0;
+    //
+    var diffColor = new THREE.Color(0, 0, 0).copy(object.object.material.color);
+    //
+    // var currentLightPosition = new THREE.Vector3(0, 0, 0);
+    // var objectPosition = new THREE.Vector3(object.point.x, object.point.y, object.point.z);
+    var currentLightVector = new THREE.Vector3(0, 0, 0);
+
+    // var lightColor = new THREE.Color(0, 0, 0);
+    // var colorVector = new THREE.Vector3(0, 0, 0);
+
+    var color = new THREE.Color(0, 0, 0);
+
+    for (var i = 0; i < lights_array.length; i++) {
+        var currentLight = lights_array[i];
+        currentLightVector = new THREE.Vector3(0, 0, 0);
+        var lightColor = currentLight.color;
+        var colorVector = new THREE.Vector3(lightColor.r, lightColor.g, lightColor.b);
+
+        // lights_array[i].position.sub(object.point);
+
+        //console.log(pointSum);
+
+        L.copy(currentLight.position);
+        L.sub(hitpoint);
+        L.normalize();
+
+        ambientLightColor = ambientLight.color;
+
+        var dotimus = Math.max(N.dot(currentLightVector), 0.0);
+        var intensity = dotimus * currentLight.intensity;
+
+        var lightCont = new THREE.Color(0, 0, 0);
+
+        lightCont.copy(diffColor);
+        lightCont.multiply(lightColor);
+        lightCont.multiplyScalar(intensity);
+
+        color.add(lightCont);
+
+
+        var ambientColor = new THREE.Color(0, 0, 0).copy(ambientLightColor);
+        var diffuseColor = new THREE.Color(0, 0, 0).copy(diffColor);//.multiply(diffuseLightColor);
+        var specularColor = new THREE.Color(0, 0, 0).copy(object.object.material.specular);//.multiply(specularLightColor);
+
+
+
+        var ambientFactor = .05;
+        var diffuseFactor = Math.max(0.0, L.dot(N));
+        var specularFactor = Math.max(0.0, Math.pow(R.dot(V), t));
+
+        var tempColor = new THREE.Color(0, 0, 0);
+        tempColor.add(ambientColor.multiplyScalar(ambientFactor));
+        tempColor.add(diffuseColor.multiplyScalar(diffuseFactor));
+        tempColor.add(specularColor.multiplyScalar(specularFactor));
+
+        color.add(tempColor);
+        //console.log(color);
+    }
+
+
+    return color;
+}
+
 /**
  * TODO
  * compute the color
@@ -308,6 +387,15 @@ function ads_shading(object,facenormal,eye,hitpoint,reflect){
     //https://threejs.org/docs/#api/core/Raycaster
     //intersect object..
     // color.set(object.object.material.color
+    if (object.object.material instanceof THREE.MeshPhongMaterial)
+    {
+        return compute_ads(object, facenormal, reflect, hitpoint);
+    }
+    else
+    {
+        return object.object.material.color;
+    }
+
 
     return testing(object,facenormal,eye,hitpoint,reflect);
     // return object.object.material.color;
@@ -322,7 +410,7 @@ function testing(object, normal, eye,hitpoint,reflect){
     var diffuseColor = new THREE.Color();
     diffuseColor.copy(object.object.material.color);
     if(diffuseColor.b === 0){
-        console.log("no blue");
+        //console.log("no blue");
     }
     var specularColor = new THREE.Color();
     specularColor.copy(object.object.material.specular);
@@ -343,8 +431,6 @@ function testing(object, normal, eye,hitpoint,reflect){
         ambientColor.multiply(ambientLight.color);
         diffuseColor.multiply(diffuseLight);
         specularColor.multiply(specularLight);
-
-
 
 
         var L = new THREE.Vector3();
