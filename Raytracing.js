@@ -121,7 +121,7 @@ function setupBackGround(scene) {
  * @param scene
  */
 function setup_objects(scene) {
-    var sphere = new THREE.SphereGeometry(1, 120, 120);
+    var sphere = new THREE.SphereGeometry(1, 90, 90);
     var materialWhite = new THREE.MeshPhongMaterial({color: 0xffffff, specular: 0x000011, shininess: 4,vertexColors: THREE.FaceColors, reflectivity:1});
 
     var obj = new THREE.Mesh(sphere, materialWhite);
@@ -371,7 +371,7 @@ function compute_ads(object, facenormal, reflect, hitpoint) {
         //console.log(color);
     }
 
-
+    console.log("still working...");
     return color;
 }
 
