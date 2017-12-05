@@ -1,5 +1,6 @@
 # Raytracing project
-We list the function and the line number
+We list the function and the line number. And if it was adapted or used as is, we say from where 
+and what part. 
 
 Aspect of the codes we wrote ourselves : 
 l.36 cameraSetup
@@ -14,12 +15,11 @@ l.490 raytrace_color
 
 Parts adapted from existing examples : 
 l.181 setupRayCanvas - http://alteredqualia.com/three/examples/raytracer_sandbox_reflection.html how to use the imageData
-1.230 spawn_raytracer - https://threejs.org/examples/#webgl_geometry_terrain_raycast
+1.230 spawn_raytracer - https://threejs.org/examples/#webgl_geometry_terrain_raycast - understand how to use the ray caster and setFromCamera
 l.264 compute_color - http://alteredqualia.com/three/examples/raytracer_sandbox_reflection.html
 l.297 compute_ads - http://alteredqualia.com/three/examples/raytracer_sandbox_reflection.html used as a help to find errors in code. 
 
 
 Parts used from exisiting examples without modification: 
-l.17 getChar 
-l.28 handleKeyPress
-l.
+l.17 getChar - taken from the examples studied in class
+l.28 handleKeyPress - taken from examples studied in class 
