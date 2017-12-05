@@ -88,7 +88,7 @@ var nz;//blue
 function setupBackGround(scene) {
     //everything will be in our 5x5 box
     var plane = new THREE.PlaneGeometry(10, 10);
-    var materialRed = new THREE.MeshPhongMaterial({color: 0xff0000, specular: 0x220000, shininess: 10000, vertexColors: THREE.NoColors, reflectivity:1});
+    var materialRed = new THREE.MeshPhongMaterial({color: 0x000000, specular: 0x000000, shininess: 10000, vertexColors: THREE.NoColors, reflectivity:1});
 
     ny = new THREE.Mesh(plane, materialRed);
     ny.position.set(0, -5, 0);
@@ -190,18 +190,10 @@ function setupRayCanvas(){
     for(var y = 0; y < HEIGHT; y++){
 
         for(var x = 0; x < WIDTH;x++){
-            //maybe add something to show progress...
 
-            //TODO in here we need to do our little computation for every pixel :)
             var c = new THREE.Color();
             c.set(spawn_raytracer(x,y));
 
-            //modulate by MAXLEVEL.
-            //not sure if correct..
-            // c.r/=MAXLEVEL;
-            // c.g/=MAXLEVEL;
-            // c.b/=MAXLEVEL;
-            // c.multiplyScalar(1/MAXLEVEL);
 
             data[idx] = c.r*255;//r
             data[idx+1] = c.g*255;//g
@@ -216,8 +208,6 @@ function setupRayCanvas(){
 }
 
 
-//first hit is where we spawn the ray - and the first intersection is where we need to decide the
-//color
 /**
  * Start of the recursive loop for every pixel.
  * We start with index x , y and spawn a raytracer.
@@ -377,27 +367,28 @@ function compute_ads(object, facenormal, reflect, hitpoint) {
 }
 
 /**
- * TODO
  * compute the color
  * @param object
+ * @param facenormal the face normal
+ * @param eye the eye vector where the it is looked from
+ * @param hitpoint the hitpoint of the object
+ * @param reflect the reflected vector.
  */
 function ads_shading(object,facenormal,eye,hitpoint,reflect){
 //recall the phong model of lighting...
-    //TODO ask teacher how to do it..???
     //Object has many usefull property :
     //https://threejs.org/docs/#api/core/Raycaster
-    //intersect object..
     // color.set(object.object.material.color
-    // if (object.object.material instanceof THREE.MeshPhongMaterial)
-    // {
-    //     // return compute_ads(object, facenormal, reflect, hitpoint);
-    //     return testing(object,facenormal,eye,hitpoint,reflect);
-    //
-    // }
-    // else
-    // {
-    //     return object.object.material.color;
-    // }
+    if (object.object.material instanceof THREE.MeshPhongMaterial)
+    {
+        return compute_ads(object, facenormal, reflect, hitpoint);
+        // return testing(object,facenormal,eye,hitpoint,reflect);
+
+    }
+    else
+    {
+        return object.object.material.color;
+    }
 
 
     return testing(object,facenormal,eye,hitpoint,reflect);
@@ -420,6 +411,7 @@ function testing(object, normal, eye,hitpoint,reflect){
     var sum = new THREE.Color();
     var counter = 1.0;
     for(var i = 0; i < lights_array.length;i++){
+        //same idea as Lights3multiple.html.
         var light = new THREE.Light();
         light.copy(lights_array[i]);
 
@@ -491,17 +483,11 @@ function inShadow(light, originPoint, normal){
         //we have the distance. if the distance is < than the lenght of the vector origin-light
         //then its before.
         var distanceObject = intersect.distance;
-        // dst*=dst;
         var vec = new THREE.Vector3;
         vec.copy(originPoint);
         vec.sub(light.position);
         var distanceLight = vec.length();
-        // console.log(distanceObject + " : " +distanceLight);
-        // if(distanceObject>distanceLight){
-        //     console.log("illuminated");
-        // }else{
-        //     console.log("shadow");
-        // }
+
         return distanceObject < distanceLight;
 
     }
@@ -533,24 +519,6 @@ function raytrace_color(origin, direction, level){
     //maybe return 1 or whatever the background is...
     return ambientLight.color;
 
-}
-
-
-/**
- * the coefficient of how much it influences the current level..
- * @param level
- * @returns {number}
- */
-function coeff_level(level){
-    return 1;
-    // if(level === 0){
-    //     return 0.5;
-    // }else if(level === 1){
-    //     return 0.25;
-    // }else if(level === 2){
-    //     return 0.125;
-    // }
-    // return 0;
 }
 
 

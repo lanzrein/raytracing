@@ -30,19 +30,28 @@
       <file leaf-file-name="Raytracing.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Raytracing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="3" column="18" lean-forward="true" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+            <state relative-caret-position="1350">
+              <caret line="90" column="82" lean-forward="false" selection-start-line="90" selection-start-column="82" selection-end-line="90" selection-end-column="82" />
               <folding>
                 <element signature="n#!!block;n#getChar#0" expanded="false" />
                 <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
                 <element signature="n#!!block;n#cameraSetup#0" expanded="false" />
                 <element signature="n#!!block;n#setupLights#0" expanded="false" />
+                <element signature="n#!!block;n#setup_objects#0" expanded="false" />
+                <element signature="n#!!block;n#start#0" expanded="false" />
                 <element signature="n#!!block;n#setupScene#0" expanded="false" />
                 <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-                <element signature="e#6258#6540#0" expanded="false" />
+                <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+                <element signature="n#!!doc;n#spawn_raytracer#0" expanded="false" />
+                <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+                <element signature="e#5808#6090#0" expanded="false" />
+                <element signature="n#!!block;n#compute_color#0" expanded="false" />
                 <element signature="n#!!block;n#compute_ads#0" expanded="false" />
-                <marker date="1512437140534" expanded="false" signature="15557:15666" ph="/** the coefficient of how much it influences the current level.. ...*/" />
-                <marker date="1512437140534" expanded="false" signature="15694:15893" ph="{...}" />
+                <element signature="n#!!doc;n#ads_shading#0" expanded="false" />
+                <element signature="n#!!block;n#testing#0" expanded="false" />
+                <element signature="n#!!block;n#inShadow#0" expanded="false" />
+                <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
+                <element signature="e#14518#14779#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -51,7 +60,7 @@
       <file leaf-file-name="raytracing_debug.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/raytracing_debug.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
+            <state relative-caret-position="714">
               <caret line="38" column="45" lean-forward="false" selection-start-line="38" selection-start-column="45" selection-end-line="38" selection-end-column="45" />
               <folding />
             </state>
@@ -83,7 +92,6 @@
       <find>600</find>
       <find>sphere</find>
       <find>maxleve</find>
-      <find>console</find>
       <find>raycaster</find>
       <find>maxlevel</find>
       <find>MAXLEVEL</find>
@@ -92,6 +100,7 @@
       <find>ambient</find>
       <find>THREE.Color(0</find>
       <find>sub</find>
+      <find>console</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -114,10 +123,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="952" />
     <option name="width" value="976" />
-    <option name="height" value="990" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -155,6 +164,7 @@
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -200,14 +210,16 @@
       <workItem from="1512060821839" duration="252000" />
       <workItem from="1512076999647" duration="1827000" />
       <workItem from="1512090849831" duration="2647000" />
+      <workItem from="1512488451404" duration="1834000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65584000" />
+    <option name="totallyTimeSpent" value="67418000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="952" y="0" width="976" height="990" extended-state="1" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34133613" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -219,21 +231,12 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34133613" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -262,7 +265,15 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="7" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/Raytracing.js</url>
+          <line>87</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -276,12 +287,21 @@
             <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
             <element signature="n#!!block;n#cameraSetup#0" expanded="false" />
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
+            <element signature="n#!!block;n#setup_objects#0" expanded="false" />
+            <element signature="n#!!block;n#start#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
             <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#6258#6540#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="n#!!doc;n#spawn_raytracer#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#5808#6090#0" expanded="false" />
+            <element signature="n#!!block;n#compute_color#0" expanded="false" />
             <element signature="n#!!block;n#compute_ads#0" expanded="false" />
-            <marker date="1512437140534" expanded="false" signature="15557:15666" ph="/** the coefficient of how much it influences the current level.. ...*/" />
-            <marker date="1512437140534" expanded="false" signature="15694:15893" ph="{...}" />
+            <element signature="n#!!doc;n#ads_shading#0" expanded="false" />
+            <element signature="n#!!block;n#testing#0" expanded="false" />
+            <element signature="n#!!block;n#inShadow#0" expanded="false" />
+            <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
+            <element signature="e#14518#14779#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -311,12 +331,21 @@
             <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
             <element signature="n#!!block;n#cameraSetup#0" expanded="false" />
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
+            <element signature="n#!!block;n#setup_objects#0" expanded="false" />
+            <element signature="n#!!block;n#start#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
             <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#6258#6540#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="n#!!doc;n#spawn_raytracer#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#5808#6090#0" expanded="false" />
+            <element signature="n#!!block;n#compute_color#0" expanded="false" />
             <element signature="n#!!block;n#compute_ads#0" expanded="false" />
-            <marker date="1512437140534" expanded="false" signature="15557:15666" ph="/** the coefficient of how much it influences the current level.. ...*/" />
-            <marker date="1512437140534" expanded="false" signature="15694:15893" ph="{...}" />
+            <element signature="n#!!doc;n#ads_shading#0" expanded="false" />
+            <element signature="n#!!block;n#testing#0" expanded="false" />
+            <element signature="n#!!block;n#inShadow#0" expanded="false" />
+            <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
+            <element signature="e#14518#14779#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -338,12 +367,21 @@
             <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
             <element signature="n#!!block;n#cameraSetup#0" expanded="false" />
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
+            <element signature="n#!!block;n#setup_objects#0" expanded="false" />
+            <element signature="n#!!block;n#start#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
             <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#6258#6540#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="n#!!doc;n#spawn_raytracer#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#5808#6090#0" expanded="false" />
+            <element signature="n#!!block;n#compute_color#0" expanded="false" />
             <element signature="n#!!block;n#compute_ads#0" expanded="false" />
-            <marker date="1512437140534" expanded="false" signature="15557:15666" ph="/** the coefficient of how much it influences the current level.. ...*/" />
-            <marker date="1512437140534" expanded="false" signature="15694:15893" ph="{...}" />
+            <element signature="n#!!doc;n#ads_shading#0" expanded="false" />
+            <element signature="n#!!block;n#testing#0" expanded="false" />
+            <element signature="n#!!block;n#inShadow#0" expanded="false" />
+            <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
+            <element signature="e#14518#14779#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -373,12 +411,21 @@
             <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
             <element signature="n#!!block;n#cameraSetup#0" expanded="false" />
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
+            <element signature="n#!!block;n#setup_objects#0" expanded="false" />
+            <element signature="n#!!block;n#start#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
             <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#6258#6540#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="n#!!doc;n#spawn_raytracer#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#5808#6090#0" expanded="false" />
+            <element signature="n#!!block;n#compute_color#0" expanded="false" />
             <element signature="n#!!block;n#compute_ads#0" expanded="false" />
-            <marker date="1512437140534" expanded="false" signature="15557:15666" ph="/** the coefficient of how much it influences the current level.. ...*/" />
-            <marker date="1512437140534" expanded="false" signature="15694:15893" ph="{...}" />
+            <element signature="n#!!doc;n#ads_shading#0" expanded="false" />
+            <element signature="n#!!block;n#testing#0" expanded="false" />
+            <element signature="n#!!block;n#inShadow#0" expanded="false" />
+            <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
+            <element signature="e#14518#14779#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -416,12 +463,21 @@
             <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
             <element signature="n#!!block;n#cameraSetup#0" expanded="false" />
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
+            <element signature="n#!!block;n#setup_objects#0" expanded="false" />
+            <element signature="n#!!block;n#start#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
             <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#6258#6540#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="n#!!doc;n#spawn_raytracer#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#5808#6090#0" expanded="false" />
+            <element signature="n#!!block;n#compute_color#0" expanded="false" />
             <element signature="n#!!block;n#compute_ads#0" expanded="false" />
-            <marker date="1512437140534" expanded="false" signature="15557:15666" ph="/** the coefficient of how much it influences the current level.. ...*/" />
-            <marker date="1512437140534" expanded="false" signature="15694:15893" ph="{...}" />
+            <element signature="n#!!doc;n#ads_shading#0" expanded="false" />
+            <element signature="n#!!block;n#testing#0" expanded="false" />
+            <element signature="n#!!block;n#inShadow#0" expanded="false" />
+            <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
+            <element signature="e#14518#14779#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -451,12 +507,21 @@
             <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
             <element signature="n#!!block;n#cameraSetup#0" expanded="false" />
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
+            <element signature="n#!!block;n#setup_objects#0" expanded="false" />
+            <element signature="n#!!block;n#start#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
             <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#6258#6540#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="n#!!doc;n#spawn_raytracer#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#5808#6090#0" expanded="false" />
+            <element signature="n#!!block;n#compute_color#0" expanded="false" />
             <element signature="n#!!block;n#compute_ads#0" expanded="false" />
-            <marker date="1512437140534" expanded="false" signature="15557:15666" ph="/** the coefficient of how much it influences the current level.. ...*/" />
-            <marker date="1512437140534" expanded="false" signature="15694:15893" ph="{...}" />
+            <element signature="n#!!doc;n#ads_shading#0" expanded="false" />
+            <element signature="n#!!block;n#testing#0" expanded="false" />
+            <element signature="n#!!block;n#inShadow#0" expanded="false" />
+            <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
+            <element signature="e#14518#14779#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -486,12 +551,21 @@
             <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
             <element signature="n#!!block;n#cameraSetup#0" expanded="false" />
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
+            <element signature="n#!!block;n#setup_objects#0" expanded="false" />
+            <element signature="n#!!block;n#start#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
             <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#6258#6540#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="n#!!doc;n#spawn_raytracer#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#5808#6090#0" expanded="false" />
+            <element signature="n#!!block;n#compute_color#0" expanded="false" />
             <element signature="n#!!block;n#compute_ads#0" expanded="false" />
-            <marker date="1512437140534" expanded="false" signature="15557:15666" ph="/** the coefficient of how much it influences the current level.. ...*/" />
-            <marker date="1512437140534" expanded="false" signature="15694:15893" ph="{...}" />
+            <element signature="n#!!doc;n#ads_shading#0" expanded="false" />
+            <element signature="n#!!block;n#testing#0" expanded="false" />
+            <element signature="n#!!block;n#inShadow#0" expanded="false" />
+            <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
+            <element signature="e#14518#14779#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -521,12 +595,21 @@
             <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
             <element signature="n#!!block;n#cameraSetup#0" expanded="false" />
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
+            <element signature="n#!!block;n#setup_objects#0" expanded="false" />
+            <element signature="n#!!block;n#start#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
             <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#6258#6540#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="n#!!doc;n#spawn_raytracer#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#5808#6090#0" expanded="false" />
+            <element signature="n#!!block;n#compute_color#0" expanded="false" />
             <element signature="n#!!block;n#compute_ads#0" expanded="false" />
-            <marker date="1512437140534" expanded="false" signature="15557:15666" ph="/** the coefficient of how much it influences the current level.. ...*/" />
-            <marker date="1512437140534" expanded="false" signature="15694:15893" ph="{...}" />
+            <element signature="n#!!doc;n#ads_shading#0" expanded="false" />
+            <element signature="n#!!block;n#testing#0" expanded="false" />
+            <element signature="n#!!block;n#inShadow#0" expanded="false" />
+            <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
+            <element signature="e#14518#14779#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -556,12 +639,21 @@
             <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
             <element signature="n#!!block;n#cameraSetup#0" expanded="false" />
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
+            <element signature="n#!!block;n#setup_objects#0" expanded="false" />
+            <element signature="n#!!block;n#start#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
             <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#6258#6540#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="n#!!doc;n#spawn_raytracer#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#5808#6090#0" expanded="false" />
+            <element signature="n#!!block;n#compute_color#0" expanded="false" />
             <element signature="n#!!block;n#compute_ads#0" expanded="false" />
-            <marker date="1512437140534" expanded="false" signature="15557:15666" ph="/** the coefficient of how much it influences the current level.. ...*/" />
-            <marker date="1512437140534" expanded="false" signature="15694:15893" ph="{...}" />
+            <element signature="n#!!doc;n#ads_shading#0" expanded="false" />
+            <element signature="n#!!block;n#testing#0" expanded="false" />
+            <element signature="n#!!block;n#inShadow#0" expanded="false" />
+            <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
+            <element signature="e#14518#14779#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -591,12 +683,21 @@
             <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
             <element signature="n#!!block;n#cameraSetup#0" expanded="false" />
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
+            <element signature="n#!!block;n#setup_objects#0" expanded="false" />
+            <element signature="n#!!block;n#start#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
             <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#6258#6540#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="n#!!doc;n#spawn_raytracer#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#5808#6090#0" expanded="false" />
+            <element signature="n#!!block;n#compute_color#0" expanded="false" />
             <element signature="n#!!block;n#compute_ads#0" expanded="false" />
-            <marker date="1512437140534" expanded="false" signature="15557:15666" ph="/** the coefficient of how much it influences the current level.. ...*/" />
-            <marker date="1512437140534" expanded="false" signature="15694:15893" ph="{...}" />
+            <element signature="n#!!doc;n#ads_shading#0" expanded="false" />
+            <element signature="n#!!block;n#testing#0" expanded="false" />
+            <element signature="n#!!block;n#inShadow#0" expanded="false" />
+            <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
+            <element signature="e#14518#14779#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -626,12 +727,21 @@
             <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
             <element signature="n#!!block;n#cameraSetup#0" expanded="false" />
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
+            <element signature="n#!!block;n#setup_objects#0" expanded="false" />
+            <element signature="n#!!block;n#start#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
             <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#6258#6540#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="n#!!doc;n#spawn_raytracer#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#5808#6090#0" expanded="false" />
+            <element signature="n#!!block;n#compute_color#0" expanded="false" />
             <element signature="n#!!block;n#compute_ads#0" expanded="false" />
-            <marker date="1512437140534" expanded="false" signature="15557:15666" ph="/** the coefficient of how much it influences the current level.. ...*/" />
-            <marker date="1512437140534" expanded="false" signature="15694:15893" ph="{...}" />
+            <element signature="n#!!doc;n#ads_shading#0" expanded="false" />
+            <element signature="n#!!block;n#testing#0" expanded="false" />
+            <element signature="n#!!block;n#inShadow#0" expanded="false" />
+            <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
+            <element signature="e#14518#14779#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -653,12 +763,21 @@
             <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
             <element signature="n#!!block;n#cameraSetup#0" expanded="false" />
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
+            <element signature="n#!!block;n#setup_objects#0" expanded="false" />
+            <element signature="n#!!block;n#start#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
             <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#6258#6540#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="n#!!doc;n#spawn_raytracer#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#5808#6090#0" expanded="false" />
+            <element signature="n#!!block;n#compute_color#0" expanded="false" />
             <element signature="n#!!block;n#compute_ads#0" expanded="false" />
-            <marker date="1512437140534" expanded="false" signature="15557:15666" ph="/** the coefficient of how much it influences the current level.. ...*/" />
-            <marker date="1512437140534" expanded="false" signature="15694:15893" ph="{...}" />
+            <element signature="n#!!doc;n#ads_shading#0" expanded="false" />
+            <element signature="n#!!block;n#testing#0" expanded="false" />
+            <element signature="n#!!block;n#inShadow#0" expanded="false" />
+            <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
+            <element signature="e#14518#14779#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -688,12 +807,21 @@
             <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
             <element signature="n#!!block;n#cameraSetup#0" expanded="false" />
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
+            <element signature="n#!!block;n#setup_objects#0" expanded="false" />
+            <element signature="n#!!block;n#start#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
             <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#6258#6540#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="n#!!doc;n#spawn_raytracer#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#5808#6090#0" expanded="false" />
+            <element signature="n#!!block;n#compute_color#0" expanded="false" />
             <element signature="n#!!block;n#compute_ads#0" expanded="false" />
-            <marker date="1512437140534" expanded="false" signature="15557:15666" ph="/** the coefficient of how much it influences the current level.. ...*/" />
-            <marker date="1512437140534" expanded="false" signature="15694:15893" ph="{...}" />
+            <element signature="n#!!doc;n#ads_shading#0" expanded="false" />
+            <element signature="n#!!block;n#testing#0" expanded="false" />
+            <element signature="n#!!block;n#inShadow#0" expanded="false" />
+            <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
+            <element signature="e#14518#14779#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -723,12 +851,21 @@
             <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
             <element signature="n#!!block;n#cameraSetup#0" expanded="false" />
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
+            <element signature="n#!!block;n#setup_objects#0" expanded="false" />
+            <element signature="n#!!block;n#start#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
             <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#6258#6540#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="n#!!doc;n#spawn_raytracer#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#5808#6090#0" expanded="false" />
+            <element signature="n#!!block;n#compute_color#0" expanded="false" />
             <element signature="n#!!block;n#compute_ads#0" expanded="false" />
-            <marker date="1512437140534" expanded="false" signature="15557:15666" ph="/** the coefficient of how much it influences the current level.. ...*/" />
-            <marker date="1512437140534" expanded="false" signature="15694:15893" ph="{...}" />
+            <element signature="n#!!doc;n#ads_shading#0" expanded="false" />
+            <element signature="n#!!block;n#testing#0" expanded="false" />
+            <element signature="n#!!block;n#inShadow#0" expanded="false" />
+            <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
+            <element signature="e#14518#14779#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -758,12 +895,21 @@
             <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
             <element signature="n#!!block;n#cameraSetup#0" expanded="false" />
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
+            <element signature="n#!!block;n#setup_objects#0" expanded="false" />
+            <element signature="n#!!block;n#start#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
             <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#6258#6540#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="n#!!doc;n#spawn_raytracer#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#5808#6090#0" expanded="false" />
+            <element signature="n#!!block;n#compute_color#0" expanded="false" />
             <element signature="n#!!block;n#compute_ads#0" expanded="false" />
-            <marker date="1512437140534" expanded="false" signature="15557:15666" ph="/** the coefficient of how much it influences the current level.. ...*/" />
-            <marker date="1512437140534" expanded="false" signature="15694:15893" ph="{...}" />
+            <element signature="n#!!doc;n#ads_shading#0" expanded="false" />
+            <element signature="n#!!block;n#testing#0" expanded="false" />
+            <element signature="n#!!block;n#inShadow#0" expanded="false" />
+            <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
+            <element signature="e#14518#14779#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -815,7 +961,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/raytracing_debug.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
+        <state relative-caret-position="714">
           <caret line="38" column="45" lean-forward="false" selection-start-line="38" selection-start-column="45" selection-end-line="38" selection-end-column="45" />
           <folding />
         </state>
@@ -823,19 +969,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Raytracing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="3" column="18" lean-forward="true" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
+        <state relative-caret-position="1350">
+          <caret line="90" column="82" lean-forward="false" selection-start-line="90" selection-start-column="82" selection-end-line="90" selection-end-column="82" />
           <folding>
             <element signature="n#!!block;n#getChar#0" expanded="false" />
             <element signature="n#!!block;n#handleKeyPress#0" expanded="false" />
             <element signature="n#!!block;n#cameraSetup#0" expanded="false" />
             <element signature="n#!!block;n#setupLights#0" expanded="false" />
+            <element signature="n#!!block;n#setup_objects#0" expanded="false" />
+            <element signature="n#!!block;n#start#0" expanded="false" />
             <element signature="n#!!block;n#setupScene#0" expanded="false" />
             <element signature="n#!!block;n#setupFirstCanvas#0" expanded="false" />
-            <element signature="e#6258#6540#0" expanded="false" />
+            <element signature="n#!!block;n#setupRayCanvas#0" expanded="false" />
+            <element signature="n#!!doc;n#spawn_raytracer#0" expanded="false" />
+            <element signature="n#!!block;n#spawn_raytracer#0" expanded="false" />
+            <element signature="e#5808#6090#0" expanded="false" />
+            <element signature="n#!!block;n#compute_color#0" expanded="false" />
             <element signature="n#!!block;n#compute_ads#0" expanded="false" />
-            <marker date="1512437140534" expanded="false" signature="15557:15666" ph="/** the coefficient of how much it influences the current level.. ...*/" />
-            <marker date="1512437140534" expanded="false" signature="15694:15893" ph="{...}" />
+            <element signature="n#!!doc;n#ads_shading#0" expanded="false" />
+            <element signature="n#!!block;n#testing#0" expanded="false" />
+            <element signature="n#!!block;n#inShadow#0" expanded="false" />
+            <element signature="n#!!block;n#raytrace_color#0" expanded="false" />
+            <element signature="e#14518#14779#0" expanded="false" />
           </folding>
         </state>
       </provider>
