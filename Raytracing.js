@@ -1,4 +1,4 @@
-var MAXLEVEL = 4.0;
+var MAXLEVEL = 10.0;
 
 var debug = false;
 var WIDTH = 400.0;
