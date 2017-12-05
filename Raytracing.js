@@ -150,8 +150,6 @@ function start() {
 
 
 
-
-
 }
 function setupScene(){
     scene = new THREE.Scene();
@@ -275,11 +273,7 @@ function compute_color(ray,object,level){
 
 
         var curr_color = new THREE.Color();
-        //TODO compute color according to ADS idea...
-        if(object.object.geometry instanceof THREE.PlaneGeometry) {
 
-            curr_color = object.object.material.color;
-        }else{
             var reflect = new THREE.Vector3();
             reflect.copy(ray);
             reflect.reflect(facenormal).normalize();
@@ -287,7 +281,7 @@ function compute_color(ray,object,level){
             var next_color = new THREE.Color();
             next_color.copy(raytrace_color(origin, reflect, level + 1)).multiplyScalar(object.object.material.reflectivity);
             (curr_color.add(next_color));
-        }
+
         return curr_color;
 
 
