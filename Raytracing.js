@@ -1,4 +1,4 @@
-var MAXLEVEL = 4.0;
+var MAXLEVEL = 3.0;
 
 var debug = false;
 var WIDTH = 400.0;
@@ -40,7 +40,7 @@ function cameraSetup(scene) {
 }
 var lights_array = [];
 //only compute it once as it is the same everywhere.
-var ambientLight;
+var ambientLight = new THREE.Color(0.2,0.2,0.2);
 /**
  * put some nice lights on our scene..
  * we choose them bright so it makes a good
@@ -88,7 +88,7 @@ var nz;//blue
 function setupBackGround(scene) {
     //everything will be in our 5x5 box
     var plane = new THREE.PlaneGeometry(10, 10);
-    var materialRed = new THREE.MeshPhongMaterial({color: 0x000000, specular: 0x000000, shininess: 10000, vertexColors: THREE.NoColors});
+    var materialRed = new THREE.MeshPhongMaterial({color: 0xff0000, specular: 0x220000, shininess: 10000, vertexColors: THREE.NoColors, reflectivity:1});
 
     ny = new THREE.Mesh(plane, materialRed);
     ny.position.set(0, -5, 0);
@@ -122,13 +122,13 @@ function setupBackGround(scene) {
  */
 function setup_objects(scene) {
     var sphere = new THREE.SphereGeometry(1, 90, 90);
-    var materialWhite = new THREE.MeshPhongMaterial({color: 0xffffff, specular: 0x000011, shininess: 4,vertexColors: THREE.FaceColors, reflectivity:1});
+    var materialWhite = new THREE.MeshPhongMaterial({color: 0xffffff, specular: 0x000011, shininess: 4,vertexColors: THREE.FaceColors, reflectivity:0.2});
 
     var obj = new THREE.Mesh(sphere, materialWhite);
     obj.position.set(0, -4, 0);
     dummy.add(obj);
 
-    var materialYellow = new THREE.MeshPhongMaterial({color: 0xffff00, specular: 0x001111, shininess: 40,vertexColors: THREE.FaceColors, reflectivity:0.1});
+    var materialYellow = new THREE.MeshPhongMaterial({color: 0xffff00, specular: 0x001111, shininess: 40,vertexColors: THREE.FaceColors, reflectivity:0.5});
 
     obj = new THREE.Mesh(sphere, materialYellow);
     obj.position.set(-2,-4, 0);
@@ -249,7 +249,6 @@ function spawn_raytracer(x,y){
 
     if(intersections.length>0){
         var hitObj = intersections[0];
-        //TODO here instead of returning the color we need to do the ADS Computation.
         //since its the first hit object this is where the computation starts.
         var c = new THREE.Color();
         c.set(compute_color(raycaster.ray.direction,hitObj,0));
@@ -275,10 +274,10 @@ function compute_color(ray,object,level){
 
 
         var curr_color = new THREE.Color();
-        //TODO compute color according to ADS idea...
-        if(object.object.geometry instanceof THREE.PlaneGeometry) {
+        if(object.object.geometry instanceof THREE.PlaneGeometry && object.object.material.color.r === 0) {
 
             curr_color = object.object.material.color;
+
         }else{
             var reflect = new THREE.Vector3();
             reflect.copy(ray);
@@ -305,7 +304,8 @@ function compute_ads(object, facenormal, reflect, hitpoint) {
     var R = reflect;
     var t = object.object.material.shininess;
     var L = new THREE.Vector3();
-    var ambientLightColor;
+    var ambientLightColor = new THREE.Color().copy(object.object.material.color);
+
 
     // var pointSum = new THREE.Vector3(0, 0, 0);
     // var pointTotal = 0;
@@ -326,7 +326,8 @@ function compute_ads(object, facenormal, reflect, hitpoint) {
 
     for (var i = 0; i < lights_array.length; i++) {
         var currentLight = lights_array[i];
-        currentLightVector = new THREE.Vector3(0, 0, 0);
+        currentLightVector.copy(currentLight.position);
+        currentLightVector.sub(hitpoint);
         var lightColor = currentLight.color;
         var colorVector = new THREE.Vector3(lightColor.r, lightColor.g, lightColor.b);
 
@@ -387,21 +388,22 @@ function ads_shading(object,facenormal,eye,hitpoint,reflect){
     //https://threejs.org/docs/#api/core/Raycaster
     //intersect object..
     // color.set(object.object.material.color
-    if (object.object.material instanceof THREE.MeshPhongMaterial)
-    {
-        return compute_ads(object, facenormal, reflect, hitpoint);
-    }
-    else
-    {
-        return object.object.material.color;
-    }
+    // if (object.object.material instanceof THREE.MeshPhongMaterial)
+    // {
+    //     // return compute_ads(object, facenormal, reflect, hitpoint);
+    //     return testing(object,facenormal,eye,hitpoint,reflect);
+    //
+    // }
+    // else
+    // {
+    //     return object.object.material.color;
+    // }
 
 
     return testing(object,facenormal,eye,hitpoint,reflect);
     // return object.object.material.color;
 
 }
-//just testing because i have time
 function testing(object, normal, eye,hitpoint,reflect){
     //https://github.com/mrdoob/three.js/issues/6501
     //we assume ambient === diffuse.
@@ -409,9 +411,6 @@ function testing(object, normal, eye,hitpoint,reflect){
     ambientColor.copy(object.object.material.color);
     var diffuseColor = new THREE.Color();
     diffuseColor.copy(object.object.material.color);
-    if(diffuseColor.b === 0){
-        //console.log("no blue");
-    }
     var specularColor = new THREE.Color();
     specularColor.copy(object.object.material.specular);
 
@@ -419,6 +418,7 @@ function testing(object, normal, eye,hitpoint,reflect){
     //and do the shading for each light similar to
     //Light3multiple.html
     var sum = new THREE.Color();
+    var counter = 1.0;
     for(var i = 0; i < lights_array.length;i++){
         var light = new THREE.Light();
         light.copy(lights_array[i]);
@@ -433,6 +433,8 @@ function testing(object, normal, eye,hitpoint,reflect){
         specularColor.multiply(specularLight);
 
 
+
+
         var L = new THREE.Vector3();
         L.copy(light.position);
         L.sub(hitpoint);
@@ -443,23 +445,22 @@ function testing(object, normal, eye,hitpoint,reflect){
         var ambientFactor = ambientLight;
         //Check if it is in shadow or not...
         var tmp = new THREE.Color();
+        tmp.add(ambientColor);
+        var LdotN = L.dot(normal);
+        var diffFactor = Math.max(0.0, LdotN);
+        var NdotH = normal.dot(H);
+        var specFactor = Math.pow(Math.max(0.0, NdotH), object.object.material.shininess);
 
-        if(inShadow(light, hitpoint)) {
-            var LdotN = L.dot(normal);
-            console.log("not in shadow");
-            var diffFactor = Math.max(0.0, LdotN);
-            var NdotH = normal.dot(H);
-            var specFactor = Math.pow(Math.max(0.0, NdotH), object.object.material.shininess);
-
-            tmp.add(specularColor.multiplyScalar(specFactor));
-            tmp.add(diffuseColor.multiplyScalar(diffFactor));
-            tmp.add(ambientColor);
+        tmp.add(specularColor.multiplyScalar(specFactor));
+        tmp.add(diffuseColor.multiplyScalar(diffFactor));
+        if(!inShadow(light, hitpoint, normal)) {
+            counter+=2.0;
 
         }
 
     }
 
-        sum.add(tmp).multiplyScalar(1/3.0);
+    sum.add(tmp).multiplyScalar(1/counter);
 
     return sum;
 
@@ -471,22 +472,42 @@ function testing(object, normal, eye,hitpoint,reflect){
 }
 
 
-function inShadow(light, originPoint){
+function inShadow(light, originPoint, normal){
     //just do a ray trace and check if first object intersected is the light.
-    var raytrace = new THREE.Raycaster();
-    raytrace.set(originPoint,light.position);
+    var or = new THREE.Vector3();
+    var lightPos = new THREE.Vector3();
+    lightPos.copy(light.position);
+    lightPos.normalize();
+    or.copy(originPoint);
+    or.x+=normal.x*0.1;
+    or.y+=normal.y*0.1;
+    or.z+=normal.z*0.1;
+    var raytrace = new THREE.Raycaster(or,lightPos);
+    // raytrace.set(or, lightPos);
     var intersections = raytrace.intersectObjects(scene.children,true);
     if(intersections.length>0){
         var intersect = intersections[0];
-        if(intersect.object.object instanceof THREE.Light){
-            var pos = intersect.object.position;
-            return pos.equals(light.position);
-        }
+        // console.log(intersections.length);
+        //we have the distance. if the distance is < than the lenght of the vector origin-light
+        //then its before.
+        var distanceObject = intersect.distance;
+        // dst*=dst;
+        var vec = new THREE.Vector3;
+        vec.copy(originPoint);
+        vec.sub(light.position);
+        var distanceLight = vec.length();
+        // console.log(distanceObject + " : " +distanceLight);
+        // if(distanceObject>distanceLight){
+        //     console.log("illuminated");
+        // }else{
+        //     console.log("shadow");
+        // }
+        return distanceObject < distanceLight;
+
     }
 
     return false;
 }
-
 
 function raytrace_color(origin, direction, level){
     if(level >= MAXLEVEL){return ambientLight.color;}
