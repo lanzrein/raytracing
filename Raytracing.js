@@ -1,10 +1,12 @@
+//max lvl of recursion
 var MAXLEVEL = 10.0;
-
+//debug flag. leave it to false or it takes very long.
 var debug = false;
+//size of canvas.
 var WIDTH = 400.0;
 var HEIGHT = 300.0;
 
-//camera thingy..
+//camera thing..
 var camera;
 //for threejs
 var dummy;
@@ -32,10 +34,13 @@ function handleKeyPress(event) {
 
 
 //we start with a normal presentation....
-
+/**
+ * Setup the camera for the scene
+ * @param scene the scene
+ */
 function cameraSetup(scene) {
     camera = new THREE.PerspectiveCamera(60, WIDTH/HEIGHT, 0.5, 100);
-    camera.position.set(4, -3.5, 4);
+    camera.position.set(4, -1, 4);
     camera.lookAt(new THREE.Vector3(0, -4, 0));
 }
 var lights_array = [];
@@ -88,7 +93,7 @@ var nz;//blue
 function setupBackGround(scene) {
     //everything will be in our 5x5 box
     var plane = new THREE.PlaneGeometry(10, 10);
-    var materialRed = new THREE.MeshPhongMaterial({color: 0x000000, specular: 0x000000, shininess: 10000, vertexColors: THREE.NoColors});
+    var materialRed = new THREE.MeshPhongMaterial({color: 0xff0000, specular: 0x440000, shininess: 10000, vertexColors: THREE.NoColors});
 
     ny = new THREE.Mesh(plane, materialRed);
     ny.position.set(0, -5, 0);
@@ -139,7 +144,9 @@ function setup_objects(scene) {
 }
 
 
-
+/**
+ * entry point of the program
+ */
 function start() {
     window.onclick = raytrace_click;
     window.onkeypress = handleKeyPress;
@@ -151,6 +158,11 @@ function start() {
 
 
 }
+
+/**
+ * Setup the THREE.JS scene.
+ * Needs to be called before rendering
+ */
 function setupScene(){
     scene = new THREE.Scene();
     var ourCanvas = document.getElementById('theCanvas');
@@ -165,6 +177,10 @@ function setupScene(){
     setupBackGround(scene);
     setup_objects(scene);
 }
+
+/**
+ * Setup and render the first canvas
+ */
 function setupFirstCanvas(){
 
 
@@ -176,6 +192,10 @@ function setupFirstCanvas(){
     // renderer.render(scene,camera);
 
 }
+
+/**
+ * Setup and render the raytracing canvas
+ */
 function setupRayCanvas(){
     var ourCanvas = document.getElementById('canvasRay');
     var context = ourCanvas.getContext('2d' );
@@ -190,7 +210,6 @@ function setupRayCanvas(){
         for(var x = 0; x < WIDTH;x++){
             //maybe add something to show progress...
 
-            //TODO in here we need to do our little computation for every pixel :)
             var c = new THREE.Color();
             c.set(spawn_raytracer(x,y));
 
@@ -214,8 +233,6 @@ function setupRayCanvas(){
 }
 
 
-//first hit is where we spawn the ray - and the first intersection is where we need to decide the
-//color
 /**
  * Start of the recursive loop for every pixel.
  * We start with index x , y and spawn a raytracer.
@@ -247,7 +264,6 @@ function spawn_raytracer(x,y){
 
     if(intersections.length>0){
         var hitObj = intersections[0];
-        //TODO here instead of returning the color we need to do the ADS Computation.
         //since its the first hit object this is where the computation starts.
         var c = new THREE.Color();
         c.set(compute_color(raycaster.ray.direction,hitObj,0));
@@ -261,6 +277,13 @@ function spawn_raytracer(x,y){
 
 }
 
+/**
+ * Compute the color for a given point
+ * @param ray the ray that hit the object.
+ * @param object the hit object
+ * @param level the level of recursion
+ * @returns {H} a THREE.js color
+ */
 function compute_color(ray,object,level){
 
     var origin = new THREE.Vector3();
@@ -290,8 +313,16 @@ function compute_color(ray,object,level){
 
 }
 
+/**
+ * Does thes Ambient,Diffuse,Specular computation
+ * that is usually done in shader code.
+ * @param object the object hit
+ * @param facenormal the face normal of the object.
+ * @param reflect the reflected vector.
+ * @param hitpoint the hitpoint.
+ * @returns {H}
+ */
 function compute_ads(object, facenormal, reflect, hitpoint) {
-    //return object.object.material.color;
 
     var view = camera.position.sub(object.point);
     var V = new THREE.Vector3(view.x, view.y, view.z).normalize();
@@ -301,20 +332,11 @@ function compute_ads(object, facenormal, reflect, hitpoint) {
     var L = new THREE.Vector3();
     var ambientLightColor;
 
-    // var pointSum = new THREE.Vector3(0, 0, 0);
-    // var pointTotal = 0;
-    //
-    // var ambientColors = new THREE.Vector3(0, 0, 0);
-    // var ambientTotal = 0;
-    //
+
     var diffColor = new THREE.Color(0, 0, 0).copy(object.object.material.color);
-    //
-    // var currentLightPosition = new THREE.Vector3(0, 0, 0);
-    // var objectPosition = new THREE.Vector3(object.point.x, object.point.y, object.point.z);
+
     var currentLightVector = new THREE.Vector3(0, 0, 0);
 
-    // var lightColor = new THREE.Color(0, 0, 0);
-    // var colorVector = new THREE.Vector3(0, 0, 0);
 
     var color = new THREE.Color(0, 0, 0);
 
@@ -362,109 +384,25 @@ function compute_ads(object, facenormal, reflect, hitpoint) {
         tempColor.add(specularColor.multiplyScalar(specularFactor));
 
         color.add(tempColor);
-        //console.log(color);
     }
 
-    console.log("still working...");
     return color;
 }
 
 /**
- * TODO
  * compute the color
  * @param object
+ * @param facenormal
+ * @param eye
+ * @param hitpoint
+ * @param reflect
  */
 function ads_shading(object,facenormal,eye,hitpoint,reflect){
-//recall the phong model of lighting...
-    //TODO ask teacher how to do it..???
-    //Object has many usefull property :
-    //https://threejs.org/docs/#api/core/Raycaster
-    //intersect object..
-    // color.set(object.object.material.color
-    if (object.object.material instanceof THREE.MeshPhongMaterial)
-    {
-        return compute_ads(object, facenormal, reflect, hitpoint);
-    }
-    else
-    {
-        return object.object.material.color;
-    }
 
-
-    return testing(object,facenormal,eye,hitpoint,reflect);
-    // return object.object.material.color;
+    return compute_ads(object, facenormal, reflect, hitpoint);
 
 }
-//just testing because i have time
-function testing(object, normal, eye,hitpoint,reflect){
-    //https://github.com/mrdoob/three.js/issues/6501
-    //we assume ambient === diffuse.
-    var ambientColor = new THREE.Color();
-    ambientColor.copy(object.object.material.color);
-    var diffuseColor = new THREE.Color();
-    diffuseColor.copy(object.object.material.color);
-    if(diffuseColor.b === 0){
-        //console.log("no blue");
-    }
-    var specularColor = new THREE.Color();
-    specularColor.copy(object.object.material.specular);
-
-    //now we need the coeff for light.
-    //and do the shading for each light similar to
-    //Light3multiple.html
-    var sum = new THREE.Color();
-    for(var i = 0; i < lights_array.length;i++){
-        var light = new THREE.Light();
-        light.copy(lights_array[i]);
-
-        var diffuseLight = light.color;
-        var specularLight = new THREE.Color();
-        specularLight.copy(light.color);
-        specularLight.multiplyScalar(2.0);
-
-        ambientColor.multiply(ambientLight.color);
-        diffuseColor.multiply(diffuseLight);
-        specularColor.multiply(specularLight);
-
-
-        var L = new THREE.Vector3();
-        L.copy(light.position);
-        L.sub(hitpoint);
-        L.normalize();
-        var H = new THREE.Vector3();
-        H.copy(eye).add(L);
-        H.normalize();
-        var ambientFactor = ambientLight;
-        //Check if it is in shadow or not...
-        var tmp = new THREE.Color();
-
-        if(inShadow(light, hitpoint)) {
-            var LdotN = L.dot(normal);
-            console.log("not in shadow");
-            var diffFactor = Math.max(0.0, LdotN);
-            var NdotH = normal.dot(H);
-            var specFactor = Math.pow(Math.max(0.0, NdotH), object.object.material.shininess);
-
-            tmp.add(specularColor.multiplyScalar(specFactor));
-            tmp.add(diffuseColor.multiplyScalar(diffFactor));
-            tmp.add(ambientColor);
-
-        }
-
-    }
-
-        sum.add(tmp).multiplyScalar(1/3.0);
-
-    return sum;
-
-
-
-
-
-
-}
-
-
+//just testing but not working...
 function inShadow(light, originPoint){
     //just do a ray trace and check if first object intersected is the light.
     var raytrace = new THREE.Raycaster();
@@ -481,7 +419,14 @@ function inShadow(light, originPoint){
     return false;
 }
 
-
+/**
+ * subroutine of ray tracing.
+ * It works exaclty like the main method.
+ *
+ * @param origin where to start from
+ * @param direction where to go
+ * @param level current lvl of recursion
+ */
 function raytrace_color(origin, direction, level){
     if(level >= MAXLEVEL){return ambientLight.color;}
     var raycaster = new THREE.Raycaster();
@@ -491,14 +436,7 @@ function raytrace_color(origin, direction, level){
  //only want the first intersect
     if(intersections.length>0){
         var hitObj = intersections[0];
-        // console.log(obj);
-        if(debug) {
-            console.log("Intersection : " + hitObj.object.position.x);
-            console.log("Intersection : " + hitObj.object.position.y);
-            console.log("Intersection : " + hitObj.object.position.z);
-            console.log("bounce!");
 
-        }
         return compute_color(raycaster.ray.direction,hitObj, level);
     }
 
@@ -508,23 +446,6 @@ function raytrace_color(origin, direction, level){
 
 }
 
-
-/**
- * the coefficient of how much it influences the current level..
- * @param level
- * @returns {number}
- */
-function coeff_level(level){
-    return 1;
-    // if(level === 0){
-    //     return 0.5;
-    // }else if(level === 1){
-    //     return 0.25;
-    // }else if(level === 2){
-    //     return 0.125;
-    // }
-    // return 0;
-}
 
 
 
