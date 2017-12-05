@@ -1,4 +1,4 @@
-var MAXLEVEL = 10.0;
+var MAXLEVEL = 1.0;
 
 var debug = false;
 var WIDTH = 400.0;
@@ -34,13 +34,15 @@ function handleKeyPress(event) {
 //we start with a normal presentation....
 
 function cameraSetup(scene) {
-    camera = new THREE.PerspectiveCamera(60, WIDTH/HEIGHT, 0.5, 100);
+    camera = new THREE.PerspectiveCamera(60, WIDTH / HEIGHT, 0.5, 100);
     camera.position.set(0, -3.5, 4);
     camera.lookAt(new THREE.Vector3(0, -4, 0));
 }
+
 var lights_array = [];
 //only compute it once as it is the same everywhere.
 var ambientLight;
+
 /**
  * put some nice lights on our scene..
  * we choose them bright so it makes a good
@@ -72,7 +74,6 @@ function setupLights(scene) {
 }
 
 
-
 /**
  * the background is actually object.
  * the reason is taht we want the background colors to participate
@@ -88,20 +89,35 @@ var nz;//blue
 function setupBackGround(scene) {
     //everything will be in our 5x5 box
     var plane = new THREE.PlaneGeometry(10, 10);
-    var materialRed = new THREE.MeshPhongMaterial({color: 0x660000, specular: 0x110000, shininess: 10000, vertexColors: THREE.NoColors});
+    var materialRed = new THREE.MeshPhongMaterial({
+        color: 0x660000,
+        specular: 0x110000,
+        shininess: 10000,
+        vertexColors: THREE.NoColors
+    });
 
     ny = new THREE.Mesh(plane, materialRed);
     ny.position.set(0, -5, 0);
     ny.rotation.set(-Math.PI / 2.0, 0, 0);
 
 
-    var materialGreen = new THREE.MeshPhongMaterial({color: 0x00ff00, specular: 0x004400, shininess: 50,vertexColors: THREE.FaceColors});
+    var materialGreen = new THREE.MeshPhongMaterial({
+        color: 0x00ff00,
+        specular: 0x004400,
+        shininess: 50,
+        vertexColors: THREE.FaceColors
+    });
 
     nx = new THREE.Mesh(plane, materialGreen);
     nx.position.set(-5, 0, 0);
     nx.rotation.y = Math.PI / 2.0;
 
-    var materialBlue = new THREE.MeshPhongMaterial({color: 0x0000ff, specular: 0x000044, shininess: 50,vertexColors: THREE.FaceColors});
+    var materialBlue = new THREE.MeshPhongMaterial({
+        color: 0x0000ff,
+        specular: 0x000044,
+        shininess: 50,
+        vertexColors: THREE.FaceColors
+    });
 
 
     nz = new THREE.Mesh(plane, materialBlue);
@@ -122,38 +138,45 @@ function setupBackGround(scene) {
  */
 function setup_objects(scene) {
     var sphere = new THREE.SphereGeometry(1, 90, 90);
-    var materialWhite = new THREE.MeshPhongMaterial({color: 0xffffff, specular: 0x000011, shininess: 4,vertexColors: THREE.FaceColors, reflectivity:0.5});
+    var materialWhite = new THREE.MeshPhongMaterial({
+        color: 0xffffff,
+        specular: 0x000011,
+        shininess: 4,
+        vertexColors: THREE.FaceColors,
+        reflectivity: 0.5
+    });
 
     var obj = new THREE.Mesh(sphere, materialWhite);
     obj.position.set(0, -4, 0);
     dummy.add(obj);
 
-    var materialYellow = new THREE.MeshPhongMaterial({color: 0xffff00, specular: 0x001111, shininess: 40,vertexColors: THREE.FaceColors, reflectivity:0.1});
+    var materialYellow = new THREE.MeshPhongMaterial({
+        color: 0xffff00,
+        specular: 0x001111,
+        shininess: 40,
+        vertexColors: THREE.FaceColors,
+        reflectivity: 0.1
+    });
 
     obj = new THREE.Mesh(sphere, materialYellow);
-    obj.position.set(-2,-4, 0);
+    obj.position.set(-2, -4, 0);
     dummy.add(obj);
 
 
-
 }
-
 
 
 function start() {
     window.onclick = raytrace_click;
     window.onkeypress = handleKeyPress;
     setupScene();
-    setupFirstCanvas();
 
     setupRayCanvas();
-
-
-
-
+    setupFirstCanvas();
 
 }
-function setupScene(){
+
+function setupScene() {
     scene = new THREE.Scene();
     var ourCanvas = document.getElementById('theCanvas');
     renderer = new THREE.WebGLRenderer({canvas: ourCanvas});
@@ -167,33 +190,36 @@ function setupScene(){
     setupBackGround(scene);
     setup_objects(scene);
 }
-function setupFirstCanvas(){
+
+function setupFirstCanvas() {
 
 
-    function render(){
-        renderer.render(scene,camera);
+    function render() {
+        renderer.render(scene, camera);
         requestAnimationFrame(render);
     }
+
     render();
     // renderer.render(scene,camera);
 
 }
-function setupRayCanvas(){
-    var ourCanvas = document.getElementById('canvasRay');
-    var context = ourCanvas.getContext('2d' );
 
-    var image = context.getImageData(0,0,400,300);
+function setupRayCanvas() {
+    var ourCanvas = document.getElementById('canvasRay');
+    var context = ourCanvas.getContext('2d');
+
+    var image = context.getImageData(0, 0, 400, 300);
     var data = image.data;
     var idx = 0;
     //this is not very three.js like or what we learnt.
     //however it was the easiest way
-    for(var y = 0; y < HEIGHT; y++){
+    for (var y = 0; y < HEIGHT; y++) {
 
-        for(var x = 0; x < WIDTH;x++){
+        for (var x = 0; x < WIDTH; x++) {
             //maybe add something to show progress...
 
             var c = new THREE.Color();
-            c.set(spawn_raytracer(x,y));
+            c.set(spawn_raytracer(x, y));
 
             //modulate by MAXLEVEL.
             //not sure if correct..
@@ -202,15 +228,15 @@ function setupRayCanvas(){
             // c.b/=MAXLEVEL;
             // c.multiplyScalar(1/MAXLEVEL);
 
-            data[idx] = c.r*255;//r
-            data[idx+1] = c.g*255;//g
-            data[idx+2] = c.b*255;//b
-            data[idx+3] = 255;//a
-            idx+=4;
+            data[idx] = c.r * 255;//r
+            data[idx + 1] = c.g * 255;//g
+            data[idx + 2] = c.b * 255;//b
+            data[idx + 3] = 255;//a
+            idx += 4;
         }
     }
 
-    context.putImageData(image,0,0);
+    context.putImageData(image, 0, 0);
 
 }
 
@@ -224,49 +250,38 @@ function setupRayCanvas(){
  * @param y y coordinate.
  * @returns {H} the color of the pixel it hit.
  */
-function spawn_raytracer(x,y){
+function spawn_raytracer(x, y) {
     //convert to nfc
 
-    var xNFC = x / WIDTH*2 - 1;
-    var yNFC = -(y / HEIGHT)*2 + 1;
+    var xNFC = x / WIDTH * 2.0 - 1;
+    var yNFC = -(y / HEIGHT) * 2.0 + 1;
     //make a vector.
     var vec = new THREE.Vector2(xNFC, yNFC);
     var raycaster = new THREE.Raycaster();
     raycaster.setFromCamera(vec, camera);
-    var intersections = raycaster.intersectObjects(scene.children,true);
+    var intersections = raycaster.intersectObjects(scene.children, true);
     //we only want the first intersect..
 
-    if(debug) {
-        var direction = new THREE.Vector3(raycaster.ray.direction.x, raycaster.ray.direction.y, raycaster.ray.direction.z);
-        direction.y *= 1000;
-        direction.x *= 1000;
-        direction.z *= 1000;
-
-
-        addAsLine(raycaster.ray.origin, direction, 0xff00ff);
-    }
-
-    if(intersections.length>0){
+    if (intersections.length > 0) {
         var hitObj = intersections[0];
         //since its the first hit object this is where the computation starts.
         var c = new THREE.Color();
-        c.set(compute_color(raycaster.ray.direction,hitObj,0));
+        c.set(compute_color(raycaster.ray.direction, hitObj, 0));
         return c;
-    }else{
+    } else {
         //no hit so we return the ambiant color..
         return ambientLight.color;
     }
 
 
-
 }
 
-function compute_color(ray,object,level){
+function compute_color(ray, object, level) {
 
     var origin = new THREE.Vector3();
     origin.copy(object.point);
     var face = object.face;
-    if(face != null) {
+    if (face != null) {
         var rotation = object.object.rotation;
         var facenormal = new THREE.Vector3();
         facenormal.copy(face.normal).applyEuler(rotation);
@@ -274,10 +289,10 @@ function compute_color(ray,object,level){
 
         var curr_color = new THREE.Color();
         //TODO compute color according to ADS idea...
-        if(object.object.geometry instanceof THREE.PlaneGeometry) {
+        if (object.object.geometry instanceof THREE.PlaneGeometry) {
 
             curr_color = object.object.material.color;
-        }else{
+        } else {
             var reflect = new THREE.Vector3();
             reflect.copy(ray);
             reflect.reflect(facenormal).normalize();
@@ -287,7 +302,6 @@ function compute_color(ray,object,level){
             (curr_color.add(next_color));
         }
         return curr_color;
-
 
 
     }
@@ -355,7 +369,6 @@ function compute_ads(object, facenormal, reflect, hitpoint) {
         var specularColor = new THREE.Color(0, 0, 0).copy(object.object.material.specular);//.multiply(specularLightColor);
 
 
-
         var ambientFactor = .05;
         var diffuseFactor = Math.max(0.0, L.dot(N));
         var specularFactor = Math.max(0.0, Math.pow(R.dot(V), t));
@@ -365,11 +378,9 @@ function compute_ads(object, facenormal, reflect, hitpoint) {
         tempColor.add(diffuseColor.multiplyScalar(diffuseFactor));
         tempColor.add(specularColor.multiplyScalar(specularFactor));
 
-        color.add(tempColor);
-        //console.log(color);
+        color.add(tempColor).multiplyScalar(1/3.0);
     }
 
-    console.log("still working...");
     return color;
 }
 
@@ -378,39 +389,32 @@ function compute_ads(object, facenormal, reflect, hitpoint) {
  * compute the color
  * @param object
  */
-function ads_shading(object,facenormal,eye,hitpoint,reflect){
+function ads_shading(object, facenormal, eye, hitpoint, reflect) {
 //recall the phong model of lighting...
     //Object has many usefull property :
     //https://threejs.org/docs/#api/core/Raycaster
     //intersect object..
     // color.set(object.object.material.color
-    return compute_ads(object, facenormal, reflect, hitpoint);
 
-    if (object.object.material instanceof THREE.MeshPhongMaterial || object.object.material.r > 0)
-    {
+    if (object.object.material.r > 0) {
         return compute_ads(object, facenormal, reflect, hitpoint);
     }
-    else
-    {
+    else {
         return object.object.material.color;
     }
 
 
-    return testing(object,facenormal,eye,hitpoint,reflect);
-    // return object.object.material.color;
-
 }
+
 //just testing because i have time
-function testing(object, normal, eye,hitpoint,reflect){
+function testing(object, normal, eye, hitpoint, reflect) {
     //https://github.com/mrdoob/three.js/issues/6501
     //we assume ambient === diffuse.
     var ambientColor = new THREE.Color();
     ambientColor.copy(object.object.material.color);
     var diffuseColor = new THREE.Color();
     diffuseColor.copy(object.object.material.color);
-    if(diffuseColor.b === 0){
-        //console.log("no blue");
-    }
+
     var specularColor = new THREE.Color();
     specularColor.copy(object.object.material.specular);
 
@@ -418,7 +422,7 @@ function testing(object, normal, eye,hitpoint,reflect){
     //and do the shading for each light similar to
     //Light3multiple.html
     var sum = new THREE.Color();
-    for(var i = 0; i < lights_array.length;i++){
+    for (var i = 0; i < lights_array.length; i++) {
         var light = new THREE.Light();
         light.copy(lights_array[i]);
 
@@ -440,44 +444,36 @@ function testing(object, normal, eye,hitpoint,reflect){
         H.copy(eye).add(L);
         H.normalize();
         var ambientFactor = ambientLight;
-        //Check if it is in shadow or not...
         var tmp = new THREE.Color();
 
-        if(inShadow(light, hitpoint)) {
-            var LdotN = L.dot(normal);
-            console.log("not in shadow");
-            var diffFactor = Math.max(0.0, LdotN);
-            var NdotH = normal.dot(H);
-            var specFactor = Math.pow(Math.max(0.0, NdotH), object.object.material.shininess);
+        var LdotN = L.dot(normal);
+        var diffFactor = Math.max(0.0, LdotN);
+        var NdotH = normal.dot(H);
+        var specFactor = Math.pow(Math.max(0.0, NdotH), object.object.material.shininess);
 
-            tmp.add(specularColor.multiplyScalar(specFactor));
-            tmp.add(diffuseColor.multiplyScalar(diffFactor));
-            tmp.add(ambientColor);
+        tmp.add(specularColor.multiplyScalar(specFactor));
+        tmp.add(diffuseColor.multiplyScalar(diffFactor));
+        tmp.add(ambientColor);
 
-        }
 
     }
 
-        sum.add(tmp).multiplyScalar(1/3.0);
+    sum.add(tmp).multiplyScalar(1 / 3.0);
 
     return sum;
-
-
-
-
 
 
 }
 
 
-function inShadow(light, originPoint){
+function inShadow(light, originPoint) {
     //just do a ray trace and check if first object intersected is the light.
     var raytrace = new THREE.Raycaster();
-    raytrace.set(originPoint,light.position);
-    var intersections = raytrace.intersectObjects(scene.children,true);
-    if(intersections.length>0){
+    raytrace.set(originPoint, light.position);
+    var intersections = raytrace.intersectObjects(scene.children, true);
+    if (intersections.length > 0) {
         var intersect = intersections[0];
-        if(intersect.object.object instanceof THREE.Light){
+        if (intersect.object.object instanceof THREE.Light) {
             var pos = intersect.object.position;
             return pos.equals(light.position);
         }
@@ -487,48 +483,31 @@ function inShadow(light, originPoint){
 }
 
 
-function raytrace_color(origin, direction, level){
-    if(level >= MAXLEVEL){return ambientLight.color;}
+function raytrace_color(origin, direction, level) {
+    if (level >= MAXLEVEL) {
+        return ambientLight.color;
+    }
     var raycaster = new THREE.Raycaster();
-    raycaster.set(origin,direction);
+    raycaster.set(origin, direction);
 
-    var intersections = raycaster.intersectObjects(scene.children,true);
- //only want the first intersect
-    if(intersections.length>0){
+    var intersections = raycaster.intersectObjects(scene.children, true);
+    //only want the first intersect
+    if (intersections.length > 0) {
         var hitObj = intersections[0];
-        // console.log(obj);
-        if(debug) {
+        if (debug) {
             console.log("Intersection : " + hitObj.object.position.x);
             console.log("Intersection : " + hitObj.object.position.y);
             console.log("Intersection : " + hitObj.object.position.z);
             console.log("bounce!");
 
         }
-        return compute_color(raycaster.ray.direction,hitObj, level);
+        return compute_color(raycaster.ray.direction, hitObj, level);
     }
 
     //if no intersection we return 0..
     //maybe return 1 or whatever the background is...
     return ambientLight.color;
 
-}
-
-
-/**
- * the coefficient of how much it influences the current level..
- * @param level
- * @returns {number}
- */
-function coeff_level(level){
-    return 1;
-    // if(level === 0){
-    //     return 0.5;
-    // }else if(level === 1){
-    //     return 0.25;
-    // }else if(level === 2){
-    //     return 0.125;
-    // }
-    // return 0;
 }
 
 
