@@ -192,7 +192,6 @@ function setupRayCanvas(){
         for(var x = 0; x < WIDTH;x++){
             //maybe add something to show progress...
 
-            //TODO in here we need to do our little computation for every pixel :)
             var c = new THREE.Color();
             c.set(spawn_raytracer(x,y));
 
@@ -249,7 +248,6 @@ function spawn_raytracer(x,y){
 
     if(intersections.length>0){
         var hitObj = intersections[0];
-        //TODO here instead of returning the color we need to do the ADS Computation.
         //since its the first hit object this is where the computation starts.
         var c = new THREE.Color();
         c.set(compute_color(raycaster.ray.direction,hitObj,0));
