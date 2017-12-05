@@ -35,7 +35,7 @@ function handleKeyPress(event) {
 
 function cameraSetup(scene) {
     camera = new THREE.PerspectiveCamera(60, WIDTH/HEIGHT, 0.5, 100);
-    camera.position.set(4, -3.5, 4);
+    camera.position.set(0, -3.5, 4);
     camera.lookAt(new THREE.Vector3(0, -4, 0));
 }
 var lights_array = [];
@@ -88,7 +88,7 @@ var nz;//blue
 function setupBackGround(scene) {
     //everything will be in our 5x5 box
     var plane = new THREE.PlaneGeometry(10, 10);
-    var materialRed = new THREE.MeshPhongMaterial({color: 0x000000, specular: 0x000000, shininess: 10000, vertexColors: THREE.NoColors});
+    var materialRed = new THREE.MeshPhongMaterial({color: 0x660000, specular: 0x110000, shininess: 10000, vertexColors: THREE.NoColors});
 
     ny = new THREE.Mesh(plane, materialRed);
     ny.position.set(0, -5, 0);
@@ -122,7 +122,7 @@ function setupBackGround(scene) {
  */
 function setup_objects(scene) {
     var sphere = new THREE.SphereGeometry(1, 90, 90);
-    var materialWhite = new THREE.MeshPhongMaterial({color: 0xffffff, specular: 0x000011, shininess: 4,vertexColors: THREE.FaceColors, reflectivity:1});
+    var materialWhite = new THREE.MeshPhongMaterial({color: 0xffffff, specular: 0x000011, shininess: 4,vertexColors: THREE.FaceColors, reflectivity:0.5});
 
     var obj = new THREE.Mesh(sphere, materialWhite);
     obj.position.set(0, -4, 0);
@@ -376,18 +376,19 @@ function compute_ads(object, facenormal, reflect, hitpoint) {
 }
 
 /**
- * TODO
+ *
  * compute the color
  * @param object
  */
 function ads_shading(object,facenormal,eye,hitpoint,reflect){
 //recall the phong model of lighting...
-    //TODO ask teacher how to do it..???
     //Object has many usefull property :
     //https://threejs.org/docs/#api/core/Raycaster
     //intersect object..
     // color.set(object.object.material.color
-    if (object.object.material instanceof THREE.MeshPhongMaterial)
+    return compute_ads(object, facenormal, reflect, hitpoint);
+
+    if (object.object.material instanceof THREE.MeshPhongMaterial || object.object.material.r > 0)
     {
         return compute_ads(object, facenormal, reflect, hitpoint);
     }
