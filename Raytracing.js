@@ -1,4 +1,5 @@
-var MAXLEVEL = 3.0;
+
+var MAXLEVEL = 10.0;
 
 var debug = false;
 var WIDTH = 400.0;
@@ -150,8 +151,6 @@ function start() {
 
 
 
-
-
 }
 function setupScene(){
     scene = new THREE.Scene();
@@ -264,11 +263,7 @@ function compute_color(ray,object,level){
 
 
         var curr_color = new THREE.Color();
-        if(object.object.geometry instanceof THREE.PlaneGeometry && object.object.material.color.r === 0) {
 
-            curr_color = object.object.material.color;
-
-        }else{
             var reflect = new THREE.Vector3();
             reflect.copy(ray);
             reflect.reflect(facenormal).normalize();
@@ -276,7 +271,7 @@ function compute_color(ray,object,level){
             var next_color = new THREE.Color();
             next_color.copy(raytrace_color(origin, reflect, level + 1)).multiplyScalar(object.object.material.reflectivity);
             (curr_color.add(next_color));
-        }
+
         return curr_color;
 
 
